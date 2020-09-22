@@ -1,0 +1,232 @@
+{
+  "prefixes": {
+    "gr": "http://purl.org/goodrelations/v1#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "ext": "http://mu.semte.ch/vocabularies/ext/",
+    "price": "http://data.rollvolet.be/vocabularies/pricing/",
+    "stock": "http://data.rollvolet.be/vocabularies/stock-management/"
+  },
+  "resources": {
+    "business-entities": {
+      "name": "business-entity",
+      "class": "gr:BusinessEntity",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "gr:name"
+        },
+        "description": {
+          "type": "string",
+          "predicate": "gr:description"
+        },
+        "legal-name": {
+          "type": "string",
+          "predicate": "gr:legalName"
+        }
+      },
+      "relationships": {
+        "offerings": {
+          "predicate": "gr:offers",
+          "target": "offering",
+          "cardinality": "many"
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/business-entities/"
+    },
+    "offerings": {
+      "name": "offering",
+      "class": "gr:Offering",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "gr:name"
+        },
+        "valid-from": {
+          "type": "datetime",
+          "predicate": "gr:validFrom"
+        },
+        "valid-through": {
+          "type": "datetime",
+          "predicate": "gr:validThrough"
+        }
+      },
+      "relationships": {
+        "products": {
+          "predicate": "gr:includes",
+          "target": "product",
+          "cardinality": "many"
+        },
+        "unit-price-specifications": {
+          "predicate": "gr:hasPriceSpecification",
+          "target": "unit-price-specification",
+          "cardinality": "many"
+        },
+        "business-entity": {
+          "predicate": "gr:offers",
+          "target": "business-entity",
+          "cardinality": "one",
+          "inverse": true
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/offerings/"
+    },
+    "products": {
+      "name": "product",
+      "class": "gr:SomeItems",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "gr:name"
+        },
+        "description": {
+          "type": "string",
+          "predicate": "gr:description"
+        }
+      },
+      "relationships": {
+        "offerings": {
+          "predicate": "gr:includes",
+          "target": "offering",
+          "cardinality": "many",
+          "inverse": true
+        },
+        "similar-products": {
+          "predicate": "gr:isSimilarTo",
+          "target": "product",
+          "cardinality": "many"
+        },
+        "categories": {
+          "predicate": "gr:category",
+          "target": "product-category",
+          "cardinality": "many"
+        },
+        "warehouse-location": {
+          "predicate": "stock:location",
+          "target": "warehouse-location",
+          "cardinality": "one"
+        },
+        // TODO add attachements
+      },
+      "new-resource-base": "http://data.rollvolet.be/products/"
+    },
+    "unit-price-specifications": {
+      "name": "unit-price-specification",
+      "class": "gr:UnitPriceSpecification",
+      "attributes": {
+        "currency": {
+          "type": "string",
+          "predicate": "gr:hasCurrency"
+        },
+        "currency-value": {
+          "type": "float",
+          "predicate": "gr:hasCurrencyValue"
+        },
+        "margin": {
+          "type": "float",
+          "predicate": "price:margin"
+        },
+        "calculation-basis": {
+          "type": "uri",
+          "predicate": "price:calculationBasis"
+        },
+        "value-added-tax-included": {
+          "type": "boolean",
+          "predicate": "gr:valueAddedTaxIncluded"
+        }
+      },
+      "relationships": {
+        "unit-code": {
+          "predicate": "gr:hasUnitOfMeasurement",
+          "target": "unit-code",
+          "cardinality": "one"
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/unit-price-specifications/"
+    },
+    "warehouse-locations": {
+      "name": "warehouse-location",
+      "class": "stock:WarehouseLocation",
+      "attributes": {
+        "rack": {
+          "type": "string",
+          "predicate": "stock:rack"
+        },
+        "position": {
+          "type": "string",
+          "predicate": "stock:position"
+        },
+        "location": {
+          "type": "string",
+          "predicate": "stock:location"
+        }
+      },
+      "relationships": {
+        "products": {
+          "predicate": "stock:location",
+          "target": "product",
+          "cardinality": "many",
+          "inverse": true
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/warehouse-locations/"
+    },
+    "business-entity-types": {
+      "name": "business-entity-type",
+      "class": "gr:BusinessEntityType",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "gr:name"
+        }
+      }
+      "new-resource-base": "http://data.rollvolet.be/business-entity-types/"
+    },
+    "unit-codes": {
+      "name": "unit-code",
+      "class": "ext:UnitCode",
+      "attributes": {
+        "label": {
+          "type": "string",
+          "predicate": "skos:prefLabel"
+        },
+        "notation": {
+          "type": "string",
+          "predicate": "skos:notation"
+        },
+        "conceptscheme": {
+          "type": "uri",
+          "predicate": "skos:inScheme"
+        }
+      }
+      "new-resource-base": "http://data.rollvolet.be/unit-codes/"
+    },
+    "product-categories": {
+      "name": "product-category",
+      "class": "ext:ProductCategory",
+      "attributes": {
+        "label": {
+          "type": "string",
+          "predicate": "skos:prefLabel"
+        },
+        "conceptscheme": {
+          "type": "uri",
+          "predicate": "skos:inScheme"
+        }
+      },
+      "relationships": {
+        "broader": {
+          "predicate": "skos:broader",
+          "target": "product-category",
+          "cardinality": "one"
+        },
+        "narrowers": {
+          "predicate": "skos:broader",
+          "target": "product-category",
+          "cardinality": "many",
+          "inverse": true
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/product-categories/"
+    }
+  }
+}
