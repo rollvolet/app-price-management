@@ -15,6 +15,10 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+  cache:
+    image: semtech/mu-cache:2.0.1
+    links:
+      - resource:backend
   resource:
     image: semtech/mu-cl-resources:feature-json-documentation
     volumes:
