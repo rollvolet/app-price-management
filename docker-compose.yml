@@ -15,6 +15,10 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+  migrations:
+    image: semtech/mu-migrations-service:0.7.0
+    volumes:
+      - ./config/migrations:/data/migrations
   cache:
     image: semtech/mu-cache:2.0.1
     links:
