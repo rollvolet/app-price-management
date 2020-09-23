@@ -43,6 +43,26 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/product-categories/"
   end
 
+  post "/files/*path", @any do
+    Proxy.forward conn, path, "http://file/files/"
+  end
+
+  delete "/files/*path", @any do
+    Proxy.forward conn, path, "http://file/files/"
+  end
+
+  get "/files/:id/dowload", @any do
+    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
+  end
+
+  get "/files/*path", @any do
+    Proxy.forward conn, path, "http://resource/files/"
+  end
+
+  patch "/files/*path", @any do
+    Proxy.forward conn, path, "http://resource/files/"
+  end
+
   match "_", %{ last_call: true, accept: %{ json: true } } do
     send_resp( conn, 404, "{ \"error\": { \"code\": 404, \"message\": \"Route not found.  See config/dispatcher.ex\" } }" )
   end
