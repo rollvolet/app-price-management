@@ -1,28 +1,53 @@
 defmodule Dispatcher do
-  use Plug.Router
+  use Matcher
 
-  def start(_argv) do
-    port = 80
-    IO.puts "Starting Plug with Cowboy on port #{port}"
-    Plug.Adapters.Cowboy.http __MODULE__, [], port: port
-    :timer.sleep(:infinity)
+  define_accept_types [
+    json: [ "application/json", "application/vnd.api+json" ],
+    html: [ "text/html", "application/xhtml+html" ],
+    any: [ "*/*" ]
+  ]
+
+  @html %{ accept: %{ html: true } }
+  @json %{ accept: %{ json: true } }
+  @any %{ accept: %{ any: true } }
+
+  match "/business-entities/*path", @any do
+    Proxy.forward conn, path, "http://cache/business-entities/"
   end
 
-  plug Plug.Logger
-  plug :match
-  plug :dispatch
+  match "/offerings/*path", @any do
+    Proxy.forward conn, path, "http://cache/offerings/"
+  end
 
-  # In order to forward the 'themes' resource to the
-  # resource service, use the following forward rule.
-  #
-  # docker-compose stop; docker-compose rm; docker-compose up
-  # after altering this file.
-  #
-  # match "/themes/*path" do
-  #   Proxy.forward conn, path, "http://resource/themes/"
-  # end
+  match "/products/*path", @any do
+    Proxy.forward conn, path, "http://cache/products/"
+  end
 
-  match _ do
+  match "/unit-price-specifications/*path", @any do
+    Proxy.forward conn, path, "http://cache/unit-price-specifications/"
+  end
+
+  match "/warehouse-locations/*path", @any do
+    Proxy.forward conn, path, "http://cache/warehouse-locations/"
+  end
+
+  match "/business-entity-types/*path", @any do
+    Proxy.forward conn, path, "http://cache/business-entity-types/"
+  end
+
+  match "/unit-codes/*path", @any do
+    Proxy.forward conn, path, "http://cache/unit-codes/"
+  end
+
+  match "/product-categories/*path", @any do
+    Proxy.forward conn, path, "http://cache/product-categories/"
+  end
+
+  match "_", %{ last_call: true, accept: %{ json: true } } do
+    send_resp( conn, 404, "{ \"error\": { \"code\": 404, \"message\": \"Route not found.  See config/dispatcher.ex\" } }" )
+  end
+
+  match "_", %{ last_call: true, accept: %{ any: true } } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
 
