@@ -15,6 +15,14 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/business-entities/"
   end
 
+  match "/addresses/*path", @any do
+    Proxy.forward conn, path, "http://cache/addresses/"
+  end
+
+  match "/contact-points/*path", @any do
+    Proxy.forward conn, path, "http://cache/contact-points/"
+  end
+
   match "/offerings/*path", @any do
     Proxy.forward conn, path, "http://cache/offerings/"
   end
@@ -43,6 +51,18 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/product-categories/"
   end
 
+  match "/organization-types/*path", @any do
+    Proxy.forward conn, path, "http://cache/organization-types/"
+  end
+
+  match "/languages/*path", @any do
+    Proxy.forward conn, path, "http://cache/languages/"
+  end
+
+  match "/countries/*path", @any do
+    Proxy.forward conn, path, "http://cache/countries/"
+  end
+
   post "/files/*path", @any do
     Proxy.forward conn, path, "http://file/files/"
   end
@@ -63,11 +83,11 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
-  match "_", %{ last_call: true, accept: %{ json: true } } do
+  match "/*path", %{ last_call: true, accept: %{ json: true } } do
     send_resp( conn, 404, "{ \"error\": { \"code\": 404, \"message\": \"Route not found.  See config/dispatcher.ex\" } }" )
   end
 
-  match "_", %{ last_call: true, accept: %{ any: true } } do
+  match "/*path", %{ last_call: true, accept: %{ any: true } } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
 

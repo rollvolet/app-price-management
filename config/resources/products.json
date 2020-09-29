@@ -7,6 +7,11 @@
     "nfo": "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#",
     "nie": "http://www.semanticdesktop.org/ontologies/2007/01/19/nie#",
     "dbpedia": "http://dbpedia.org/resource/",
+    "schema": "http://schema.org/",
+    "locn": "http://www.w3.org/ns/locn#",
+    "adres": "https://data.vlaanderen.be/ns/adres#",
+    "regorg": "http://www.w3.org/ns/regorg#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
     "ext": "http://mu.semte.ch/vocabularies/ext/",
     "price": "http://data.rollvolet.be/vocabularies/pricing/",
     "stock": "http://data.rollvolet.be/vocabularies/stock-management/"
@@ -27,6 +32,26 @@
         "legal-name": {
           "type": "string",
           "predicate": "gr:legalName"
+        },
+        "vat-number": {
+          "type": "string",
+          "predicate": "gr:vatID"
+        },
+        "homepage": {
+          "type": "string",
+          "predicate": "foaf:homepage"
+        },
+        "comment": {
+          "type": "string",
+          "predicate": "schema:comment"
+        },
+        "created": {
+          "type": "datetime",
+          "predicate": "dct:created"
+        },
+        "modified": {
+          "type": "datetime",
+          "predicate": "dct:modified"
         }
       },
       "relationships": {
@@ -34,9 +59,85 @@
           "predicate": "gr:offers",
           "target": "offering",
           "cardinality": "many"
+        },
+        "contact-points": {
+          "predicate": "schema:contactPoint",
+          "target": "contact-point",
+          "cardinality": "many"
+        },
+        "address": {
+          "predicate": "locn:address",
+          "target": "address",
+          "cardinality": "one"
+        },
+        "language": {
+          "predicate": "schema:knowsLanguage",
+          "target": "language",
+          "cardinality": "one"
+        },
+        "organization-type": {
+          "predicate": "regorg:orgType",
+          "target": "organization-type",
+          "cardinality": "one"
         }
       },
       "new-resource-base": "http://data.rollvolet.be/business-entities/"
+    },
+    "contact-points": {
+      "name": "contact-point",
+      "class": "schema:ContactPoint",
+      "attributes": {
+        "telephone": {
+          "type": "string",
+          "predicate": "schema:telephone"
+        },
+        "fax-number": {
+          "type": "string",
+          "predicate": "schema:faxNumber"
+        },
+        "email": {
+          "type": "string",
+          "predicate": "schema:email"
+        },
+        "contactType": {
+          "type": "string",
+          "predicate": "schema:contactType"
+        }
+      },
+      "relationships": {
+        "country": {
+          "predicate": "locn:adminUnitL1",
+          "target": "country",
+          "cardinality": "one"
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/contact-points/"
+    },
+    "addresses": {
+      "name": "address",
+      "class": "locn:Address",
+      "attributes": {
+        "fullAddress": {
+          "type": "string",
+          "predicate": "locn:fullAddress"
+        },
+        "postalCode": {
+          "type": "string",
+          "predicate": "locn:postalCode"
+        },
+        "city": {
+          "type": "string",
+          "predicate": "adres:gemeentenaam"
+        }
+      },
+      "relationships": {
+        "country": {
+          "predicate": "locn:adminUnitL1",
+          "target": "country",
+          "cardinality": "one"
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/addresses/"
     },
     "offerings": {
       "name": "offering",
@@ -168,13 +269,13 @@
           "type": "string",
           "predicate": "stock:rack"
         },
+        "side": {
+          "type": "string",
+          "predicate": "stock:side"
+        },
         "position": {
           "type": "string",
           "predicate": "stock:position"
-        },
-        "location": {
-          "type": "string",
-          "predicate": "stock:location"
         }
       },
       "relationships": {
@@ -183,9 +284,37 @@
           "target": "product",
           "cardinality": "many",
           "inverse": true
+        },
+        "department": {
+          "predicate": "stock:department",
+          "target": "warehouse-department",
+          "cardinality": "one"
         }
       },
       "new-resource-base": "http://data.rollvolet.be/warehouse-locations/"
+    },
+    "warehouse-departments": {
+      "name": "warehouse-department",
+      "class": "stock:WarehouseDepartment",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "schema:title"
+        },
+        "code": {
+          "type": "string",
+          "predicate": "schema:identifier"
+        }
+      },
+      "relationships": {
+        "warehouse-locations": {
+          "predicate": "stock:department",
+          "target": "warehouse-location",
+          "cardinality": "many",
+          "inverse": true
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/warehouse-departments/"
     },
     "files": {
       "name": "file",
@@ -245,7 +374,7 @@
           "type": "string",
           "predicate": "skos:notation"
         },
-        "conceptscheme": {
+        "concept-scheme": {
           "type": "uri",
           "predicate": "skos:inScheme"
         }
@@ -260,7 +389,7 @@
           "type": "string",
           "predicate": "skos:prefLabel"
         },
-        "conceptscheme": {
+        "concept-scheme": {
           "type": "uri",
           "predicate": "skos:inScheme"
         }
@@ -279,6 +408,47 @@
         }
       },
       "new-resource-base": "http://data.rollvolet.be/product-categories/"
+    },
+    "organization-types": {
+      "name": "organization-type",
+      "class": "ext:OrganizationType",
+      "attributes": {
+        "label": {
+          "type": "string",
+          "predicate": "skos:prefLabel"
+        },
+        "notation": {
+          "type": "string",
+          "predicate": "skos:notation"
+        },
+        "concept-scheme": {
+          "type": "uri",
+          "predicate": "skos:inScheme"
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/organization-types/"
+    },
+    "countries": {
+      "name": "country",
+      "class": "schema:Country",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "schema:name"
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/countries/"
+    },
+    "languages": {
+      "name": "language",
+      "class": "schema:Language",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "schema:name"
+        }
+      },
+      "new-resource-base": "http://data.rollvolet.be/languages/"
     }
   }
 }
