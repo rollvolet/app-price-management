@@ -188,6 +188,10 @@
           "type": "string",
           "predicate": "gr:description"
         },
+        "identifier": {
+          "type": "string",
+          "predicate": "dct:identifier"
+        },
         "created": {
           "type": "datetime",
           "predicate": "dct:created"
