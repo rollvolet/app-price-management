@@ -303,7 +303,7 @@
       "attributes": {
         "name": {
           "type": "string",
-          "predicate": "schema:title"
+          "predicate": "schema:name"
         },
         "code": {
           "type": "string",
