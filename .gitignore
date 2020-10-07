@@ -2,7 +2,6 @@
 /data/db/*
 !/data/db/toLoad
 !/data/db/toLoad/*
-
+/data/elasticsearch/*
 docker-compose.override.yml
-
 *~

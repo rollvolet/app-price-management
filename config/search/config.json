@@ -1,0 +1,116 @@
+{
+  "persist_indexes": true,
+  "automatic_index_updates": true,
+  "additive_indexes": false,
+  "eager_indexing_groups": [
+    [ { "variables": [], "name": "clean" }, { "variables": [], "name":"rollvolet"} ]
+  ],
+  "batch_size": 100,
+  "max_batches": 0,
+  "number_of_threads": 8,
+  "default_settings": {},
+  "types" : [
+    {
+      "type" : "product",
+      "on_path" : "products",
+      "rdf_type" : "http://purl.org/goodrelations/v1#SomeItems",
+      "properties" : {
+        "name" : "http://purl.org/goodrelations/v1#name",
+        "description" : "http://purl.org/goodrelations/v1#description",
+        "identifier": "http://purl.org/dc/terms/identifier",
+        "created": "http://purl.org/dc/terms/created",
+        "modified": "http://purl.org/dc/terms/modified",
+        "categories": [
+          "http://purl.org/goodrelations/v1#category",
+          "http://www.w3.org/2004/02/skos/core#prefLabel"
+        ],
+        "warehouseLocation": {
+          "via": "http://data.rollvolet.be/vocabularies/stock-management/location",
+          "rdf_type": "http://data.rollvolet.be/vocabularies/stock-management/WarehouseLocation",
+          "properties": {
+            "rack": "http://data.rollvolet.be/vocabularies/stock-management/rack",
+            "side": "http://data.rollvolet.be/vocabularies/stock-management/side",
+            "position": "http://data.rollvolet.be/vocabularies/stock-management/position",
+            "department": [
+              "http://data.rollvolet.be/vocabularies/stock-management/department",
+              "http://schema.org/name"
+            ]
+          }
+        },
+        "offerings": {
+          "via": "^http://purl.org/goodrelations/v1#includes",
+          "rdf_type": "http://purl.org/goodrelations/v1#Offering",
+          "properties": {
+            "name" : "http://purl.org/goodrelations/v1#name",
+            "validFrom": "http://purl.org/goodrelations/v1#validFrom",
+            "validThrough": "http://purl.org/goodrelations/v1#validThrough",
+            "businessEntity": [
+              "^http://purl.org/goodrelations/v1#offers",
+              "http://purl.org/goodrelations/v1#name"
+            ],
+            "unitPriceSpecification": {
+              "via": "http://purl.org/goodrelations/v1#hasPriceSpecification",
+              "rdf_type": "http://purl.org/goodrelations/v1#UnitPriceSpecification",
+              "properties": {
+                "currencyValue": "http://purl.org/goodrelations/v1#hasCurrencyValue",
+                "margin": "http://data.rollvolet.be/vocabularies/pricing/margin",
+                "calculationBasis": "http://data.rollvolet.be/vocabularies/pricing/calculationBasis",
+                "valueAddedTaxIncluded": "http://purl.org/goodrelations/v1#valueAddedTaxIncluded",
+                "unitCode": [
+                  "http://purl.org/goodrelations/v1#hasUnitOfMeasurement",
+                  "http://www.w3.org/2004/02/skos/core#prefLabel"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "mappings": {
+        "properties": {
+          "created": {
+            "type": "date"
+          },
+          "modified": {
+            "type": "date"
+          },
+          "categories": {
+            "type": "keyword"
+          },
+          "warehouseLocation.rack": {
+            "type": "keyword"
+          },
+          "warehouseLocation.side": {
+            "type": "keyword"
+          },
+          "warehouseLocation.position": {
+            "type": "keyword"
+          },
+          "warehouseLocation.department": {
+            "type": "keyword"
+          },
+          "offerings.unitPriceSpecification.currencyValue": {
+            "type": "float"
+          },
+          "offerings.unitPriceSpecification.margin": {
+            "type": "float"
+          },
+          "offerings.unitPriceSpecification.calculationBasis": {
+            "type": "keyword"
+          },
+          "offerings.unitPriceSpecification.valueAddedTaxIncluded": {
+            "type": "boolean"
+          },
+          "offerings.unitPriceSpecification.unitCode": {
+            "type": "keyword"
+          },
+          "offerings.validFrom": {
+            "type": "date"
+          },
+          "offerings.validThrough": {
+            "type": "date"
+          }
+        }
+      }
+    }
+  ]
+}

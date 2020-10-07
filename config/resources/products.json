@@ -45,6 +45,10 @@
           "type": "string",
           "predicate": "schema:comment"
         },
+        "category": {
+          "type": "uri",
+          "predicate": "gr:category"
+        },
         "created": {
           "type": "datetime",
           "predicate": "dct:created"

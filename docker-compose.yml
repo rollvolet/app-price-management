@@ -31,6 +31,22 @@ services:
     image: semtech/mu-migrations-service:0.7.0
     volumes:
       - ./config/migrations:/data/migrations
+  search:
+    image: semtech/mu-search:0.6.3
+    volumes:
+      - ./config/search:/config
+      - /home/erika/mu-semtech/mu-search:/app
+    environment:
+     JRUBY_OPTIONS: "-J-Xmx4g"
+     NUMBER_OF_THREADS: 16
+     LOG_LEVEL: "info"
+  elasticsearch:
+    image: semtech/mu-search-elastic-backend:1.0.0
+    volumes:
+      - ./data/elasticsearch/:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - JRUBY_OPTIONS="-Xms4g Xmx4g"
   cache:
     image: semtech/mu-cache:2.0.1
     links:
