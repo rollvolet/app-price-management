@@ -4,7 +4,7 @@ services:
   identifier:
     image: semtech/mu-identifier:1.9.0
     environment:
-      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: "[{\"variables\":[],\"name\":\"rollvolet\"}]"
+      DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: "[{\"variables\":[],\"name\":\"clean\"}, {\"variables\":[],\"name\":\"rollvolet\"}]"
   dispatcher:
     image: semtech/mu-dispatcher:2.0.0
     volumes:
