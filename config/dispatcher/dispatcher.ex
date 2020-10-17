@@ -11,75 +11,79 @@ defmodule Dispatcher do
   @json %{ accept: %{ json: true } }
   @any %{ accept: %{ any: true } }
 
-  match "/business-entities/*path", @any do
+  get "/products/search/*path", @json do
+    Proxy.forward conn, path, "http://search/products/search/"
+  end
+
+  match "/business-entities/*path", @json do
     Proxy.forward conn, path, "http://cache/business-entities/"
   end
 
-  match "/addresses/*path", @any do
+  match "/addresses/*path", @json do
     Proxy.forward conn, path, "http://cache/addresses/"
   end
 
-  match "/contact-points/*path", @any do
+  match "/contact-points/*path", @json do
     Proxy.forward conn, path, "http://cache/contact-points/"
   end
 
-  match "/offerings/*path", @any do
+  match "/offerings/*path", @json do
     Proxy.forward conn, path, "http://cache/offerings/"
   end
 
-  match "/products/*path", @any do
+  match "/products/*path", @json do
     Proxy.forward conn, path, "http://cache/products/"
   end
 
-  match "/unit-price-specifications/*path", @any do
+  match "/unit-price-specifications/*path", @json do
     Proxy.forward conn, path, "http://cache/unit-price-specifications/"
   end
 
-  match "/warehouse-locations/*path", @any do
+  match "/warehouse-locations/*path", @json do
     Proxy.forward conn, path, "http://cache/warehouse-locations/"
   end
 
-  match "/business-entity-types/*path", @any do
+  match "/business-entity-types/*path", @json do
     Proxy.forward conn, path, "http://cache/business-entity-types/"
   end
 
-  match "/unit-codes/*path", @any do
+  match "/unit-codes/*path", @json do
     Proxy.forward conn, path, "http://cache/unit-codes/"
   end
 
-  match "/product-categories/*path", @any do
+  match "/product-categories/*path", @json do
     Proxy.forward conn, path, "http://cache/product-categories/"
   end
 
-  match "/organization-types/*path", @any do
+  match "/organization-types/*path", @json do
     Proxy.forward conn, path, "http://cache/organization-types/"
   end
 
-  match "/languages/*path", @any do
+  match "/languages/*path", @json do
     Proxy.forward conn, path, "http://cache/languages/"
   end
 
-  match "/countries/*path", @any do
+  match "/countries/*path", @json do
     Proxy.forward conn, path, "http://cache/countries/"
   end
 
-  post "/files/*path", @any do
+  post "/files/*path", @json do
     Proxy.forward conn, path, "http://file/files/"
   end
 
-  delete "/files/*path", @any do
+  delete "/files/*path", @json do
     Proxy.forward conn, path, "http://file/files/"
   end
 
-  get "/files/:id/dowload", @any do
+  get "/files/:id/dowload", @json do
     Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
   end
 
-  get "/files/*path", @any do
+  get "/files/*path", @json do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
-  patch "/files/*path", @any do
+  patch "/files/*path", @json do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
