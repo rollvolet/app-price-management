@@ -5,3 +5,7 @@
 /data/elasticsearch/*
 docker-compose.override.yml
 *~
+*-sensitive.ttl
+*-sensitive.graph
+*.store
+
