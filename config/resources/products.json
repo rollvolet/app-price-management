@@ -161,10 +161,17 @@
         }
       },
       "relationships": {
-        "products": {
-          "predicate": "gr:includes",
+        "purchase-product": {
+          "predicate": "ext:purchaseOffering",
           "target": "product",
-          "cardinality": "many"
+          "cardinality": "one",
+          "inverse": true
+        },
+        "sales-product": {
+          "predicate": "ext:salesOffering",
+          "target": "product",
+          "cardinality": "one",
+          "inverse": true
         },
         "unit-price-specifications": {
           "predicate": "gr:hasPriceSpecification",
@@ -206,11 +213,17 @@
         }
       },
       "relationships": {
-        "offerings": {
-          "predicate": "gr:includes",
+        "purchase-offering": {
+          "_comment": "subproperty of gr:includes",
+          "predicate": "ext:purchaseOffering"
           "target": "offering",
-          "cardinality": "many",
-          "inverse": true
+          "cardinality": "one"
+        },
+        "sales-offering": {
+          "_comment": "subproperty of gr:includes",
+          "predicate": "ext:salesOffering"
+          "target": "offering",
+          "cardinality": "one"
         },
         "similar-products": {
           "predicate": "gr:isSimilarTo",

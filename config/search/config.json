@@ -7,7 +7,6 @@
   ],
   "batch_size": 100,
   "max_batches": 0,
-  "number_of_threads": 8,
   "default_settings": {},
   "types" : [
     {
@@ -37,8 +36,33 @@
             ]
           }
         },
-        "offerings": {
-          "via": "^http://purl.org/goodrelations/v1#includes",
+        "purchaseOffering": {
+          "via": "http://mu.semte.ch/vocabularies/ext/purchaseOffering",
+          "rdf_type": "http://purl.org/goodrelations/v1#Offering",
+          "properties": {
+            "name" : "http://purl.org/goodrelations/v1#name",
+            "validFrom": "http://purl.org/goodrelations/v1#validFrom",
+            "validThrough": "http://purl.org/goodrelations/v1#validThrough",
+            "businessEntity": [
+              "^http://purl.org/goodrelations/v1#offers",
+              "http://purl.org/goodrelations/v1#name"
+            ],
+            "unitPriceSpecification": {
+              "via": "http://purl.org/goodrelations/v1#hasPriceSpecification",
+              "rdf_type": "http://purl.org/goodrelations/v1#UnitPriceSpecification",
+              "properties": {
+                "currencyValue": "http://purl.org/goodrelations/v1#hasCurrencyValue",
+                "valueAddedTaxIncluded": "http://purl.org/goodrelations/v1#valueAddedTaxIncluded",
+                "unitCode": [
+                  "http://purl.org/goodrelations/v1#hasUnitOfMeasurement",
+                  "http://www.w3.org/2004/02/skos/core#prefLabel"
+                ]
+              }
+            }
+          }
+        },
+        "salesOffering": {
+          "via": "http://mu.semte.ch/vocabularies/ext/salesOffering",
           "rdf_type": "http://purl.org/goodrelations/v1#Offering",
           "properties": {
             "name" : "http://purl.org/goodrelations/v1#name",
@@ -88,25 +112,46 @@
           "warehouseLocation.department": {
             "type": "keyword"
           },
-          "offerings.unitPriceSpecification.currencyValue": {
+          "purchaseOffering.unitPriceSpecification.currencyValue": {
             "type": "float"
           },
-          "offerings.unitPriceSpecification.margin": {
+          "purchaseOffering.unitPriceSpecification.margin": {
             "type": "float"
           },
-          "offerings.unitPriceSpecification.calculationBasis": {
+          "purchaseOffering.unitPriceSpecification.calculationBasis": {
             "type": "keyword"
           },
-          "offerings.unitPriceSpecification.valueAddedTaxIncluded": {
+          "purchaseOffering.unitPriceSpecification.valueAddedTaxIncluded": {
             "type": "boolean"
           },
-          "offerings.unitPriceSpecification.unitCode": {
+          "purchaseOffering.unitPriceSpecification.unitCode": {
             "type": "keyword"
           },
-          "offerings.validFrom": {
+          "purchaseOffering.validFrom": {
             "type": "date"
           },
-          "offerings.validThrough": {
+          "purchaseOffering.validThrough": {
+            "type": "date"
+          },
+          "salesOffering.unitPriceSpecification.currencyValue": {
+            "type": "float"
+          },
+          "salesOffering.unitPriceSpecification.margin": {
+            "type": "float"
+          },
+          "salesOffering.unitPriceSpecification.calculationBasis": {
+            "type": "keyword"
+          },
+          "salesOffering.unitPriceSpecification.valueAddedTaxIncluded": {
+            "type": "boolean"
+          },
+          "salesOffering.unitPriceSpecification.unitCode": {
+            "type": "keyword"
+          },
+          "salesOffering.validFrom": {
+            "type": "date"
+          },
+          "salesOffering.validThrough": {
             "type": "date"
           }
         }
