@@ -1,0 +1,5 @@
+DELETE WHERE {
+  GRAPH ?g {
+     ?supplier <http://purl.org/goodrelations/v1#name> "Niet opgegeven" ; ?p ?o .
+  }
+}
