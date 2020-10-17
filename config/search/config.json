@@ -41,6 +41,7 @@
           "rdf_type": "http://purl.org/goodrelations/v1#Offering",
           "properties": {
             "name" : "http://purl.org/goodrelations/v1#name",
+            "identifier": "http://purl.org/dc/terms/identifier",
             "validFrom": "http://purl.org/goodrelations/v1#validFrom",
             "validThrough": "http://purl.org/goodrelations/v1#validThrough",
             "businessEntity": [
@@ -52,6 +53,7 @@
               "rdf_type": "http://purl.org/goodrelations/v1#UnitPriceSpecification",
               "properties": {
                 "currencyValue": "http://purl.org/goodrelations/v1#hasCurrencyValue",
+                "currency": "http://purl.org/goodrelations/v1#hasCurrency",
                 "valueAddedTaxIncluded": "http://purl.org/goodrelations/v1#valueAddedTaxIncluded",
                 "unitCode": [
                   "http://purl.org/goodrelations/v1#hasUnitOfMeasurement",
@@ -77,6 +79,7 @@
               "rdf_type": "http://purl.org/goodrelations/v1#UnitPriceSpecification",
               "properties": {
                 "currencyValue": "http://purl.org/goodrelations/v1#hasCurrencyValue",
+                "currency": "http://purl.org/goodrelations/v1#hasCurrency",
                 "margin": "http://data.rollvolet.be/vocabularies/pricing/margin",
                 "calculationBasis": "http://data.rollvolet.be/vocabularies/pricing/calculationBasis",
                 "valueAddedTaxIncluded": "http://purl.org/goodrelations/v1#valueAddedTaxIncluded",
@@ -91,6 +94,12 @@
       },
       "mappings": {
         "properties": {
+          "name": {
+            "type": "keyword"
+          },
+          "identifier": {
+            "type": "integer"
+          },
           "created": {
             "type": "date"
           },
@@ -112,8 +121,20 @@
           "warehouseLocation.department": {
             "type": "keyword"
           },
+          "purchaseOffering.name": {
+            "type": "keyword"
+          },
+          "purchaseOffering.validFrom": {
+            "type": "date"
+          },
+          "purchaseOffering.validThrough": {
+            "type": "date"
+          },
           "purchaseOffering.unitPriceSpecification.currencyValue": {
             "type": "float"
+          },
+          "purchaseOffering.unitPriceSpecification.currency": {
+            "type": "keyword"
           },
           "purchaseOffering.unitPriceSpecification.margin": {
             "type": "float"
@@ -127,14 +148,20 @@
           "purchaseOffering.unitPriceSpecification.unitCode": {
             "type": "keyword"
           },
-          "purchaseOffering.validFrom": {
+          "salesOffering.name": {
+            "type": "keyword"
+          },
+          "salesOffering.validFrom": {
             "type": "date"
           },
-          "purchaseOffering.validThrough": {
+          "salesOffering.validThrough": {
             "type": "date"
           },
           "salesOffering.unitPriceSpecification.currencyValue": {
             "type": "float"
+          },
+          "salesOffering.unitPriceSpecification.currency": {
+            "type": "keyword"
           },
           "salesOffering.unitPriceSpecification.margin": {
             "type": "float"
@@ -147,12 +174,6 @@
           },
           "salesOffering.unitPriceSpecification.unitCode": {
             "type": "keyword"
-          },
-          "salesOffering.validFrom": {
-            "type": "date"
-          },
-          "salesOffering.validThrough": {
-            "type": "date"
           }
         }
       }
