@@ -19,8 +19,13 @@
         "identifier": "http://purl.org/dc/terms/identifier",
         "created": "http://purl.org/dc/terms/created",
         "modified": "http://purl.org/dc/terms/modified",
-        "categories": [
+        "category": [
           "http://purl.org/goodrelations/v1#category",
+          "http://www.w3.org/2004/02/skos/core#prefLabel"
+        ],
+        "broaderCategory": [
+          "http://purl.org/goodrelations/v1#category",
+          "http://www.w3.org/2004/02/skos/core#broader",
           "http://www.w3.org/2004/02/skos/core#prefLabel"
         ],
         "warehouseLocation": {
