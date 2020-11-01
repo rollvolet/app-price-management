@@ -34,10 +34,9 @@ services:
     volumes:
       - ./config/migrations:/data/migrations
   search:
-    image: semtech/mu-search:0.6.3
+    image: semtech/mu-search:latest
     volumes:
       - ./config/search:/config
-      - /home/erika/mu-semtech/mu-search:/app
     environment:
      JRUBY_OPTIONS: "-J-Xmx4g"
      NUMBER_OF_THREADS: 16
