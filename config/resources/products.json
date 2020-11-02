@@ -85,7 +85,8 @@
           "cardinality": "one"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/business-entities/"
+      "new-resource-base": "http://data.rollvolet.be/business-entities/",
+      "features": ["include-uri"]
     },
     "contact-points": {
       "name": "contact-point",
@@ -115,7 +116,8 @@
           "cardinality": "one"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/contact-points/"
+      "new-resource-base": "http://data.rollvolet.be/contact-points/",
+      "features": ["include-uri"]
     },
     "addresses": {
       "name": "address",
@@ -141,7 +143,8 @@
           "cardinality": "one"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/addresses/"
+      "new-resource-base": "http://data.rollvolet.be/addresses/",
+      "features": ["include-uri"]
     },
     "offerings": {
       "name": "offering",
@@ -185,7 +188,8 @@
           "inverse": true
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/offerings/"
+      "new-resource-base": "http://data.rollvolet.be/offerings/",
+      "features": ["include-uri"]
     },
     "products": {
       "name": "product",
@@ -246,7 +250,8 @@
           "cardinality": "many"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/products/"
+      "new-resource-base": "http://data.rollvolet.be/products/",
+      "features": ["include-uri"]
     },
     "unit-price-specifications": {
       "name": "unit-price-specification",
@@ -280,7 +285,8 @@
           "cardinality": "one"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/unit-price-specifications/"
+      "new-resource-base": "http://data.rollvolet.be/unit-price-specifications/",
+      "features": ["include-uri"]
     },
     "warehouse-locations": {
       "name": "warehouse-location",
@@ -312,7 +318,8 @@
           "cardinality": "one"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/warehouse-locations/"
+      "new-resource-base": "http://data.rollvolet.be/warehouse-locations/",
+      "features": ["include-uri"]
     },
     "warehouse-departments": {
       "name": "warehouse-department",
@@ -335,7 +342,8 @@
           "inverse": true
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/warehouse-departments/"
+      "new-resource-base": "http://data.rollvolet.be/warehouse-departments/",
+      "features": ["include-uri"]
     },
     "files": {
       "name": "file",
@@ -370,7 +378,8 @@
           "inverse": true
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/files/"
+      "new-resource-base": "http://data.rollvolet.be/files/",
+      "features": ["include-uri"]
     },
     "business-entity-types": {
       "name": "business-entity-type",
@@ -381,7 +390,8 @@
           "predicate": "gr:name"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/business-entity-types/"
+      "new-resource-base": "http://data.rollvolet.be/business-entity-types/",
+      "features": ["include-uri"]
     },
     "unit-codes": {
       "name": "unit-code",
@@ -400,7 +410,8 @@
           "predicate": "skos:inScheme"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/unit-codes/"
+      "new-resource-base": "http://data.rollvolet.be/unit-codes/",
+      "features": ["include-uri"]
     },
     "product-categories": {
       "name": "product-category",
@@ -428,7 +439,9 @@
           "inverse": true
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/product-categories/"
+      "new-resource-base": "http://data.rollvolet.be/product-categories/",,
+      "features": ["include-uri"]
+      "features": ["include-uri"]
     },
     "organization-types": {
       "name": "organization-type",
@@ -447,7 +460,8 @@
           "predicate": "skos:inScheme"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/organization-types/"
+      "new-resource-base": "http://data.rollvolet.be/organization-types/",
+      "features": ["include-uri"]
     },
     "countries": {
       "name": "country",
@@ -458,7 +472,8 @@
           "predicate": "schema:name"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/countries/"
+      "new-resource-base": "http://data.rollvolet.be/countries/",
+      "features": ["include-uri"]
     },
     "languages": {
       "name": "language",
@@ -469,7 +484,8 @@
           "predicate": "schema:name"
         }
       },
-      "new-resource-base": "http://data.rollvolet.be/languages/"
+      "new-resource-base": "http://data.rollvolet.be/languages/",
+      "features": ["include-uri"]
     }
   }
 }
