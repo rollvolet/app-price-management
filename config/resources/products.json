@@ -230,10 +230,10 @@
           "target": "product",
           "cardinality": "many"
         },
-        "categories": {
+        "category": {
           "predicate": "gr:category",
           "target": "product-category",
-          "cardinality": "many"
+          "cardinality": "one"
         },
         "warehouse-location": {
           "predicate": "stock:location",
