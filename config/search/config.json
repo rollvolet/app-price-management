@@ -5,6 +5,7 @@
   "eager_indexing_groups": [
     [ { "variables": [], "name": "clean" }, { "variables": [], "name":"rollvolet"} ]
   ],
+  "update_wait_interval_minutes": 0,
   "batch_size": 100,
   "max_batches": 0,
   "default_settings": {},
