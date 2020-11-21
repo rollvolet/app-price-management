@@ -154,6 +154,14 @@
           "type": "string",
           "predicate": "gr:name"
         },
+        "identifier": {
+          "type": "string",
+          "predicate": "dct:identifier"
+        },
+        "availability": {
+          "type": "uri",
+          "predicate": "schema:availability"
+        },
         "valid-from": {
           "type": "datetime",
           "predicate": "gr:validFrom"
