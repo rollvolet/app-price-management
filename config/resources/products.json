@@ -287,6 +287,12 @@
         }
       },
       "relationships": {
+        "offering": {
+          "predicate": "gr:hasPriceSpecification",
+          "target": "offering",
+          "cardinality": "one",
+          "inverse": true
+        },
         "unit-code": {
           "predicate": "gr:hasUnitOfMeasurement",
           "target": "unit-code",
