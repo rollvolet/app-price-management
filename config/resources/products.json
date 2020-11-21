@@ -212,7 +212,7 @@
           "predicate": "gr:description"
         },
         "identifier": {
-          "type": "string",
+          "type": "number",
           "predicate": "dct:identifier"
         },
         "created": {
