@@ -91,6 +91,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/files/"
   end
 
+  post "/sequence-numbers/*path", @json do
+    Proxy.forward conn, path, "http://sequence-numbers/sequence-numbers/"
+  end
+
   match "/*path", %{ last_call: true, accept: %{ json: true } } do
     send_resp( conn, 404, "{ \"error\": { \"code\": 404, \"message\": \"Route not found.  See config/dispatcher.ex\" } }" )
   end
