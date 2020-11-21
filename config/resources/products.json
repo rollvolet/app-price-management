@@ -184,10 +184,10 @@
           "cardinality": "one",
           "inverse": true
         },
-        "unit-price-specifications": {
+        "unit-price-specification": {
           "predicate": "gr:hasPriceSpecification",
           "target": "unit-price-specification",
-          "cardinality": "many"
+          "cardinality": "one"
         },
         "business-entity": {
           "predicate": "gr:offers",
