@@ -43,6 +43,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/warehouse-locations/"
   end
 
+  match "/warehouse-departments/*path", @json do
+    Proxy.forward conn, path, "http://cache/warehouse-departments/"
+  end
+
   match "/business-entity-types/*path", @json do
     Proxy.forward conn, path, "http://cache/business-entity-types/"
   end
