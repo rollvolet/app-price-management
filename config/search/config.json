@@ -101,7 +101,7 @@
       "mappings": {
         "properties": {
           "name": {
-            "type": "keyword"
+            "type": "text"
           },
           "identifier": {
             "type": "integer"
@@ -129,6 +129,12 @@
           },
           "purchaseOffering.name": {
             "type": "keyword"
+          },
+          "purchaseOffering.identifier": {
+            "type": "keyword"
+          },
+          "purchaseOffering.businessEntity": {
+            "type": "text"
           },
           "purchaseOffering.validFrom": {
             "type": "date"
