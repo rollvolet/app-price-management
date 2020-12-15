@@ -7,9 +7,9 @@ defmodule Dispatcher do
     any: [ "*/*" ]
   ]
 
-  @html %{ accept: %{ html: true } }
-  @json %{ accept: %{ json: true } }
-  @any %{ accept: %{ any: true } }
+  define_layers [ :static, :api, :frontend_fallback, :not_found ]
+
+  @json %{ accept: %{ json: true }, layer: :api }
 
   match "/sessions/*path", @json do
     Proxy.forward conn, path, "http://login/sessions/"
@@ -99,11 +99,19 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://sequence-numbers/sequence-numbers/"
   end
 
-  match "/*path", %{ last_call: true, accept: %{ json: true } } do
+  get "/assets/*path", %{ layer: :static } do
+    Proxy.forward conn, path, "http://frontend/assets/"
+  end
+
+  get "/*_path", %{ layer: :frontend_fallback } do
+    Proxy.forward conn, [], "http://frontend/index.html"
+  end
+
+  match "/*_path", %{ last_call: true, accept: %{ json: true } } do
     send_resp( conn, 404, "{ \"error\": { \"code\": 404, \"message\": \"Route not found.  See config/dispatcher.ex\" } }" )
   end
 
-  match "/*path", %{ last_call: true, accept: %{ any: true } } do
+  match "/*_path", %{ last_call: true } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
 
