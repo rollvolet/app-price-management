@@ -11,6 +11,10 @@ defmodule Dispatcher do
   @json %{ accept: %{ json: true } }
   @any %{ accept: %{ any: true } }
 
+  match "/sessions/*path", @json do
+    Proxy.forward conn, path, "http://login/sessions/"
+  end
+
   get "/products/search/*path", @json do
     Proxy.forward conn, path, "http://search/products/search/"
   end
