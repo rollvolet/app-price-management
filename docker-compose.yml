@@ -33,6 +33,11 @@ services:
       - virtuoso:database
     volumes:
       - ./config/migrations:/data/migrations
+  login:
+    image: semtech/mu-login-service:2.9.0
+    environment:
+      USERS_GRAPH: "http://mu.semte.ch/graphs/users"
+      SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
   search:
     image: semtech/mu-search:latest
     volumes:
@@ -64,8 +69,3 @@ services:
       - ./data/files:/share
   sequence-numbers:
     image: rollvolet/sequence-numbers-service:0.1.0
-  login:
-    image: semtech/mu-login-service:latest
-    environment:
-      USERS_GRAPH: "http://mu.semte.ch/graphs/users"
-      SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
