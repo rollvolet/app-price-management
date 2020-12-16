@@ -1,22 +1,37 @@
 version: '3.8'
 
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
   identifier:
     image: semtech/mu-identifier:1.9.1
     environment:
       DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: "[{\"variables\":[],\"name\":\"clean\"}, {\"variables\":[],\"name\":\"rollvolet\"}]"
+    restart: always
+    logging: *default-logging
   dispatcher:
     image: semtech/mu-dispatcher:2.1.0-beta.1
     volumes:
       - ./config/dispatcher:/config
+    restart: always
+    logging: *default-logging
   frontend:
     image: rollvolet/frontend-price-management:latest
+    restart: always
+    logging: *default-logging
   database:
     image: semtech/mu-authorization:0.6.0-beta.5
     environment:
       MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
     volumes:
       - ./config/authorization:/config
+    restart: always
+    logging: *default-logging
   virtuoso:
     image: tenforce/virtuoso:1.3.2-virtuoso7.2.5.1
     environment:
@@ -25,21 +40,29 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+    restart: always
+    logging: *default-logging
   delta-notifier:
     image: semtech/mu-delta-notifier:0.1.0
     volumes:
       - ./config/delta:/config
+    restart: always
+    logging: *default-logging
   migrations:
     image: semtech/mu-migrations-service:0.7.0
     links:
       - virtuoso:database
     volumes:
       - ./config/migrations:/data/migrations
+    restart: always
+    logging: *default-logging
   login:
     image: semtech/mu-login-service:2.9.0
     environment:
       USERS_GRAPH: "http://mu.semte.ch/graphs/users"
       SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
+    restart: always
+    logging: *default-logging
   search:
     image: semtech/mu-search:0.7.0
     volumes:
@@ -48,6 +71,8 @@ services:
      JRUBY_OPTIONS: "-J-Xmx4g"
      NUMBER_OF_THREADS: 16
      LOG_LEVEL: "info"
+    restart: always
+    logging: *default-logging
   elasticsearch:
     image: semtech/mu-search-elastic-backend:1.0.0
     volumes:
@@ -55,19 +80,29 @@ services:
     environment:
       - discovery.type=single-node
       - JRUBY_OPTIONS="-Xms4g Xmx4g"
+    restart: always
+    logging: *default-logging
   cache:
     image: semtech/mu-cache:2.0.1
     links:
       - resource:backend
+    restart: always
+    logging: *default-logging
   resource:
     image: semtech/mu-cl-resources:1.20.0
     volumes:
       - ./config/resources:/config
     environment:
       CACHE_CLEAR_PATH: "http://cache/.mu/clear-keys"
+    restart: always
+    logging: *default-logging
   file:
     image: semtech/mu-file-service:3.1.2
     volumes:
       - ./data/files:/share
+    restart: always
+    logging: *default-logging
   sequence-numbers:
     image: rollvolet/sequence-numbers-service:0.1.0
+    restart: always
+    logging: *default-logging
