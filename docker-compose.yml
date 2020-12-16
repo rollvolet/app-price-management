@@ -39,7 +39,7 @@ services:
       USERS_GRAPH: "http://mu.semte.ch/graphs/users"
       SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
   search:
-    image: semtech/mu-search:latest
+    image: semtech/mu-search:0.7.0
     volumes:
       - ./config/search:/config
     environment:
