@@ -112,7 +112,10 @@
           "modified": {
             "type": "date"
           },
-          "categories": {
+          "category": {
+            "type": "keyword"
+          },
+          "broaderCategory": {
             "type": "keyword"
           },
           "warehouseLocation.rack": {
