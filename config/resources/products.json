@@ -215,6 +215,10 @@
           "type": "number",
           "predicate": "dct:identifier"
         },
+        "include-in-stock-report": {
+          "type": "boolean",
+          "predicate": "ext:includeInStockReport"
+        },
         "created": {
           "type": "datetime",
           "predicate": "dct:created"
