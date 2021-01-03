@@ -3,10 +3,9 @@
 !/data/db/toLoad
 !/data/db/toLoad/*
 /data/elasticsearch/*
+/data/files/*
 docker-compose.override.yml
 *~
 *-sensitive.ttl
 *-sensitive.graph
 *.store
-
-
