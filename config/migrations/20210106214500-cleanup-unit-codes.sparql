@@ -1,0 +1,34 @@
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+DELETE WHERE {
+  GRAPH <http://mu.semte.ch/graphs/rollvolet> {
+    ?unitCode skos:prefLabel "l liter" ; ?p ?o .
+  }
+}
+
+;
+
+DELETE {
+  GRAPH <http://mu.semte.ch/graphs/rollvolet> {
+    ?s skos:prefLabel ?oldLabel .
+  }
+}
+INSERT {
+  GRAPH <http://mu.semte.ch/graphs/rollvolet> {
+    ?s skos:prefLabel ?newLabel .
+  }
+}
+WHERE {
+  GRAPH <http://mu.semte.ch/graphs/rollvolet> {
+    ?s skos:prefLabel ?oldLabel .
+    VALUES (?oldLabel ?newLabel) {
+      ("l" "liter")
+      ("pr" "paar")
+      ("st" "stuk")
+    }
+  }
+}
