@@ -20,6 +20,10 @@ defmodule Dispatcher do
     Proxy.forward conn, [], "http://frontend/torii/redirect.html"
   end
 
+  get "/files/:id/download", %{ layer: :static } do
+    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
+  end
+
   get "/*_path", @html_pages do
     Proxy.forward conn, [], "http://frontend/index.html"
   end
@@ -94,10 +98,6 @@ defmodule Dispatcher do
 
   delete "/files/*path", @json_service do
     Proxy.forward conn, path, "http://file/files/"
-  end
-
-  get "/files/:id/dowload", @json_service do
-    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
   end
 
   get "/files/*path", @json_service do
