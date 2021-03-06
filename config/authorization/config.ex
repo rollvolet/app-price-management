@@ -13,11 +13,10 @@ defmodule Acl.UserGroups.Config do
     # many ways.  The useage of a GroupSpec and GraphCleanup are
     # common.
     [
-      # // PUBLIC
       %GroupSpec{
         name: "rollvolet",
         useage: [:read, :write, :read_for_write],
-        access: %AlwaysAccessible{},
+        access: %AlwaysAccessible{}, # TODO check related account
         graphs: [ %GraphSpec{
                     graph: "http://mu.semte.ch/graphs/rollvolet",
                     constraint: %ResourceConstraint{
