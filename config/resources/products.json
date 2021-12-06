@@ -46,7 +46,7 @@
           "predicate": "schema:comment"
         },
         "category": {
-          "type": "uri",
+          "type": "url",
           "predicate": "gr:category"
         },
         "created": {
@@ -159,7 +159,7 @@
           "predicate": "dct:identifier"
         },
         "availability": {
-          "type": "uri",
+          "type": "url",
           "predicate": "schema:availability"
         },
         "valid-from": {
@@ -282,7 +282,7 @@
           "predicate": "price:margin"
         },
         "calculation-basis": {
-          "type": "uri",
+          "type": "url",
           "predicate": "price:calculationBasis"
         },
         "value-added-tax-included": {
@@ -424,7 +424,7 @@
           "predicate": "skos:notation"
         },
         "concept-scheme": {
-          "type": "uri",
+          "type": "url",
           "predicate": "skos:inScheme"
         }
       },
@@ -440,7 +440,7 @@
           "predicate": "skos:prefLabel"
         },
         "concept-scheme": {
-          "type": "uri",
+          "type": "url",
           "predicate": "skos:inScheme"
         }
       },
@@ -473,7 +473,7 @@
           "predicate": "skos:notation"
         },
         "concept-scheme": {
-          "type": "uri",
+          "type": "url",
           "predicate": "skos:inScheme"
         }
       },
