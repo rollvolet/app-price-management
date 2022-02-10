@@ -27,12 +27,12 @@ services:
   database:
     image: semtech/mu-authorization:0.6.0-beta.7
     environment:
-      MU_SPARQL_ENDPOINT: "http://virtuoso:8890/sparql"
+      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
     volumes:
       - ./config/authorization:/config
     restart: always
     logging: *default-logging
-  virtuoso:
+  triplestore:
     image: redpencil/virtuoso:1.0.0
     environment:
       SPARQL_UPDATE: "true"
@@ -52,7 +52,7 @@ services:
   migrations:
     image: semtech/mu-migrations-service:0.7.0
     links:
-      - virtuoso:database
+      - triplestore:database
     volumes:
       - ./config/migrations:/data/migrations
     restart: always

@@ -4,7 +4,7 @@ sleep 3
 docker-compose rm -fs elasticsearch search
 docker-compose rm -fs kibana
 sudo rm -rf data/elasticsearch/
-docker-compose exec -T virtuoso isql-v <<EOF
+docker-compose exec -T triplestore isql-v <<EOF
 SPARQL DELETE WHERE {   GRAPH <http://mu.semte.ch/authorization> {     ?s ?p ?o.   } };
 exec('checkpoint');
 exit;
