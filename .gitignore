@@ -6,6 +6,6 @@
 /data/files/*
 docker-compose.override.yml
 *~
-*-sensitive.ttl
-*-sensitive.graph
+*-sensitive*
 *.store
+config/project-scripts/*.txt

@@ -1,0 +1,34 @@
+{
+  "version": "0.1",
+  "scripts": [
+    {
+      "documentation": {
+        "command": "remove-product",
+        "description": "Removes the product and related resources",
+        "arguments": ["product-uri"]
+      },
+      "environment": {
+        "image": "redpencil/virtuoso:1.0.0",
+        "interactive": false,
+        "script": "remove-product.sh",
+        "join_networks": true
+      }
+    },
+    {
+      "documentation": {
+        "command": "remove-product-bulk",
+        "description": "Removes all products listed in ./config/project-scripts/products.txt",
+        "arguments": []
+      },
+      "environment": {
+        "image": "redpencil/virtuoso:1.0.0",
+        "interactive": false,
+        "script": "remove-product-bulk.sh",
+        "join_networks": true
+      },
+      "mounts": {
+        "app": "/project/"
+      }
+    }
+  ]
+}
