@@ -4,6 +4,7 @@
 !/data/db/toLoad/*
 /data/elasticsearch/*
 /data/files/*
+/data/conversion/*
 docker-compose.override.yml
 *~
 *-sensitive*
