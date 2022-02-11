@@ -1,0 +1,14 @@
+DELETE {
+  GRAPH <http://mu.semte.ch/graphs/rollvolet> {
+    <http://data.rollvolet.be/product-categories/5ff62171b74f5d33848e9632> <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+  }
+} INSERT {
+  GRAPH <http://mu.semte.ch/graphs/rollvolet> {
+    <http://data.rollvolet.be/product-categories/5ff62171b74f5d33848e9632> <http://www.w3.org/2004/02/skos/core#prefLabel> "zonnescherm kast" .
+  }
+
+} WHERE {
+  GRAPH <http://mu.semte.ch/graphs/rollvolet> {
+    <http://data.rollvolet.be/product-categories/5ff62171b74f5d33848e9632> <http://www.w3.org/2004/02/skos/core#prefLabel> ?label .
+  }
+}
