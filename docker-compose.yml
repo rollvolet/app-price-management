@@ -110,3 +110,10 @@ services:
     image: rollvolet/sequence-numbers-service:0.1.0
     restart: always
     logging: *default-logging
+  data-conversion:
+    image: rollvolet/products-data-converter
+    links:
+      - triplestore:database
+    volumes:
+      - ./data/conversion:/data
+    restart: "no"
