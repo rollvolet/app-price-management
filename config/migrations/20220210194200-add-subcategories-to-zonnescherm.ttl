@@ -1,0 +1,26 @@
+<http://data.rollvolet.be/product-categories/9a08e71f-38b6-40a2-bebc-0cc599de2f96> a <http://www.w3.org/2004/02/skos/core#Concept>,
+    <http://mu.semte.ch/vocabularies/ext/ProductCategory>;
+  <http://mu.semte.ch/vocabularies/core/uuid> "9a08e71f-38b6-40a2-bebc-0cc599de2f96";
+  <http://purl.org/dc/terms/created> "2022-02-10T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-02-10T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://www.w3.org/2004/02/skos/core#broader> <http://data.rollvolet.be/product-categories/5ff62171b74f5d33848e95b1>;
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://data.rollvolet.be/concept-schemes/24a8fa46-378d-440d-ae26-5c1f9eaa4319>;
+  <http://www.w3.org/2004/02/skos/core#prefLabel> "profielen" .
+
+<http://data.rollvolet.be/product-categories/66d457e6-152c-404a-85db-d147868b608c> a <http://www.w3.org/2004/02/skos/core#Concept>,
+    <http://mu.semte.ch/vocabularies/ext/ProductCategory>;
+    <http://mu.semte.ch/vocabularies/core/uuid> "66d457e6-152c-404a-85db-d147868b608c" ;
+  <http://purl.org/dc/terms/created> "2022-02-10T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-02-10T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://www.w3.org/2004/02/skos/core#broader> <http://data.rollvolet.be/product-categories/5ff62171b74f5d33848e95b1>;
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://data.rollvolet.be/concept-schemes/24a8fa46-378d-440d-ae26-5c1f9eaa4319>;
+  <http://www.w3.org/2004/02/skos/core#prefLabel> "knikarmen" .
+
+<http://data.rollvolet.be/product-categories/62c02ff2-e3ac-46c7-93c9-9d6980a043ea> a <http://www.w3.org/2004/02/skos/core#Concept>,
+    <http://mu.semte.ch/vocabularies/ext/ProductCategory>;
+    <http://mu.semte.ch/vocabularies/core/uuid> "62c02ff2-e3ac-46c7-93c9-9d6980a043ea" ;
+  <http://purl.org/dc/terms/created> "2022-02-10T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://purl.org/dc/terms/modified> "2022-02-10T00:00:00Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://www.w3.org/2004/02/skos/core#broader> <http://data.rollvolet.be/product-categories/5ff62171b74f5d33848e95b1>;
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://data.rollvolet.be/concept-schemes/24a8fa46-378d-440d-ae26-5c1f9eaa4319>;
+  <http://www.w3.org/2004/02/skos/core#prefLabel> "wikkelbuis" .
