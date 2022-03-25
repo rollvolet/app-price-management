@@ -274,11 +274,11 @@
           "predicate": "gr:hasCurrency"
         },
         "currency-value": {
-          "type": "float",
+          "type": "decimal",
           "predicate": "gr:hasCurrencyValue"
         },
         "margin": {
-          "type": "float",
+          "type": "decimal",
           "predicate": "price:margin"
         },
         "calculation-basis": {
