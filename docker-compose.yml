@@ -9,13 +9,13 @@ x-logging:
 
 services:
   identifier:
-    image: semtech/mu-identifier:1.9.1
+    image: semtech/mu-identifier:1.10.1
     environment:
       DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: "[{\"name\":\"clean\", \"variables\":[]}, {\"name\":\"rollvolet\", \"variables\":[]}]"
     restart: always
     logging: *default-logging
   dispatcher:
-    image: semtech/mu-dispatcher:2.1.0-beta.1
+    image: semtech/mu-dispatcher:2.1.0-beta.2
     volumes:
       - ./config/dispatcher:/config
     restart: always
@@ -31,7 +31,7 @@ services:
     restart: "no"
     logging: *default-logging
   database:
-    image: semtech/mu-authorization:0.6.0-beta.7
+    image: semtech/mu-authorization:0.6.0-beta.8
     environment:
       MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
     volumes:
@@ -50,13 +50,13 @@ services:
     restart: always
     logging: *default-logging
   delta-notifier:
-    image: semtech/mu-delta-notifier:0.1.0
+    image: semtech/mu-delta-notifier:0.2.0
     volumes:
       - ./config/delta:/config
     restart: always
     logging: *default-logging
   migrations:
-    image: semtech/mu-migrations-service:0.7.0
+    image: semtech/mu-migrations-service:0.9.0
     links:
       - triplestore:database
     volumes:
@@ -64,11 +64,19 @@ services:
     restart: always
     logging: *default-logging
   msal-login:
-    image: rollvolet/msal-login-service:0.3.1
+    image: rollvolet/msal-login-service:1.0.0
+    environment:
+      AUTH_REFRESH_TOKENS: "true"
+    restart: always
+    logging: *default-logging
+  token-cache:
+    image: redis:6.2.6
+    volumes:
+      - ./data/token-cache:/data
     restart: always
     logging: *default-logging
   search:
-    image: semtech/mu-search:0.8.0-beta.3
+    image: semtech/mu-search:feature-use-exact-counts-flag
     volumes:
       - ./config/search:/config
     environment:
@@ -78,7 +86,7 @@ services:
     restart: always
     logging: *default-logging
   elasticsearch:
-    image: semtech/mu-search-elastic-backend:1.0.0
+    image: semtech/mu-search-elastic-backend:1.1.0
     volumes:
       - ./data/elasticsearch/:/usr/share/elasticsearch/data
     environment:
@@ -93,7 +101,7 @@ services:
     restart: always
     logging: *default-logging
   resource:
-    image: semtech/mu-cl-resources:1.21.0
+    image: semtech/mu-cl-resources:feature-enhanced-cache-keys
     volumes:
       - ./config/resources:/config
     environment:
