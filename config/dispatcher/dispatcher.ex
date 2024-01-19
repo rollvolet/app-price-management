@@ -34,6 +34,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://msal-login/sessions/"
   end
 
+  match "/mock-sessions/*path", @json_service do
+    Proxy.forward conn, path, "http://mock-login/sessions/"
+  end
+
   ## File upload/download
 
   get "/files/:id/download", %{ layer: :static } do

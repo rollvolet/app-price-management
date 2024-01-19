@@ -75,6 +75,21 @@ services:
       - ./data/token-cache:/data
     restart: always
     logging: *default-logging
+  registration:
+    image: semtech/mu-registration-service:2.7.3
+    entrypoint: echo "Only needed for mu script"
+    environment:
+      USERS_GRAPH: "http://mu.semte.ch/graphs/users"
+      SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
+    restart: "no"
+    logging: *default-logging
+  mock-login:
+    image: semtech/mu-login-service:3.0.0
+    environment:
+      USERS_GRAPH: "http://mu.semte.ch/graphs/users"
+      SESSIONS_GRAPH: "http://mu.semte.ch/graphs/sessions"
+    restart: always
+    logging: *default-logging
   search:
     image: semtech/mu-search:feature-use-exact-counts-flag
     volumes:
