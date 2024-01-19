@@ -428,6 +428,14 @@
           "predicate": "skos:inScheme"
         }
       },
+      "relationships": {
+        "unit-price-specifications": {
+          "predicate": "gr:hasUnitOfMeasurement",
+          "target": "unit-code",
+          "cardinality": "many",
+          "inverse": true
+        }
+      },
       "new-resource-base": "http://data.rollvolet.be/unit-codes/",
       "features": ["include-uri"]
     },
