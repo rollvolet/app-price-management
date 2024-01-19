@@ -38,6 +38,14 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://mock-login/sessions/"
   end
 
+  get "/accounts/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/accounts/"
+  end
+
+  get "/users/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/users/"
+  end
+
   ## File upload/download
 
   get "/files/:id/download", %{ layer: :static } do
