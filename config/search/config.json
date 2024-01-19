@@ -3,7 +3,12 @@
   "automatic_index_updates": true,
   "additive_indexes": false,
   "eager_indexing_groups": [
-    [ { "variables": [], "name": "clean" }, { "variables": [], "name":"rollvolet"} ]
+    [
+      { "name": "rollvolet", "variables": [] }
+    ],
+    [
+      { "name": "clean", "variables": [] }
+    ]
   ],
   "update_wait_interval_minutes": 0,
   "batch_size": 100,
@@ -20,15 +25,21 @@
         "identifier": "http://purl.org/dc/terms/identifier",
         "created": "http://purl.org/dc/terms/created",
         "modified": "http://purl.org/dc/terms/modified",
-        "category": [
-          "http://purl.org/goodrelations/v1#category",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
-        "broaderCategory": [
-          "http://purl.org/goodrelations/v1#category",
-          "http://www.w3.org/2004/02/skos/core#broader",
-          "http://www.w3.org/2004/02/skos/core#prefLabel"
-        ],
+        "category": {
+          "via": "http://purl.org/goodrelations/v1#category",
+          "properties": {
+            "label": "http://www.w3.org/2004/02/skos/core#prefLabel"
+          }
+        },
+        "broaderCategory": {
+          "via": [
+            "http://purl.org/goodrelations/v1#category",
+            "http://www.w3.org/2004/02/skos/core#broader"
+          ],
+          "properties": {
+            "label": "http://www.w3.org/2004/02/skos/core#prefLabel"
+          }
+        },
         "warehouseLocation": {
           "via": "http://data.rollvolet.be/vocabularies/stock-management/location",
           "rdf_type": "http://data.rollvolet.be/vocabularies/stock-management/WarehouseLocation",
@@ -50,10 +61,12 @@
             "identifier": "http://purl.org/dc/terms/identifier",
             "validFrom": "http://purl.org/goodrelations/v1#validFrom",
             "validThrough": "http://purl.org/goodrelations/v1#validThrough",
-            "businessEntity": [
-              "^http://purl.org/goodrelations/v1#offers",
-              "http://purl.org/goodrelations/v1#name"
-            ],
+            "businessEntity": {
+              "via": "^http://purl.org/goodrelations/v1#offers",
+              "properties": {
+                "name": "http://purl.org/goodrelations/v1#name"
+              }
+            },
             "unitPriceSpecification": {
               "via": "http://purl.org/goodrelations/v1#hasPriceSpecification",
               "rdf_type": "http://purl.org/goodrelations/v1#UnitPriceSpecification",
@@ -76,10 +89,12 @@
             "name" : "http://purl.org/goodrelations/v1#name",
             "validFrom": "http://purl.org/goodrelations/v1#validFrom",
             "validThrough": "http://purl.org/goodrelations/v1#validThrough",
-            "businessEntity": [
-              "^http://purl.org/goodrelations/v1#offers",
-              "http://purl.org/goodrelations/v1#name"
-            ],
+            "businessEntity": {
+              "via": "^http://purl.org/goodrelations/v1#offers",
+              "properties": {
+                "name": "http://purl.org/goodrelations/v1#name"
+              }
+            },
             "unitPriceSpecification": {
               "via": "http://purl.org/goodrelations/v1#hasPriceSpecification",
               "rdf_type": "http://purl.org/goodrelations/v1#UnitPriceSpecification",
@@ -101,97 +116,60 @@
       "mappings": {
         "properties": {
           "name": {
-            "type": "text"
+            "type": "keyword",
+             "normalizer": "names"
           },
-          "identifier": {
-            "type": "integer"
+          "identifier": { "type": "integer" },
+          "created": { "type": "date" },
+          "modified": { "type": "date" },
+          "category.label": { "type": "keyword" },
+          "broaderCategory.label": { "type": "keyword" },
+          "warehouseLocation.rack": { "type": "keyword" },
+          "warehouseLocation.side": { "type": "keyword" },
+          "warehouseLocation.position": { "type": "keyword" },
+          "warehouseLocation.department": { "type": "keyword" },
+          "purchaseOffering.name": { "type": "keyword" },
+          "purchaseOffering.identifier": { "type": "keyword" },
+          "purchaseOffering.businessEntity.name": {
+            "type": "keyword",
+             "normalizer": "names"
           },
-          "created": {
-            "type": "date"
+          "purchaseOffering.validFrom": { "type": "date" },
+          "purchaseOffering.validThrough": { "type": "date" },
+          "purchaseOffering.unitPriceSpecification.currencyValue": { "type": "float" },
+          "purchaseOffering.unitPriceSpecification.currency": { "type": "keyword" },
+          "purchaseOffering.unitPriceSpecification.margin": { "type": "float" },
+          "purchaseOffering.unitPriceSpecification.calculationBasis": { "type": "keyword" },
+          "purchaseOffering.unitPriceSpecification.valueAddedTaxIncluded": { "type": "boolean" },
+          "purchaseOffering.unitPriceSpecification.unitCode": { "type": "keyword" },
+          "salesOffering.name": { "type": "keyword" },
+          "salesOffering.businessEntity.name": {
+            "type": "keyword",
+            "normalizer": "names"
           },
-          "modified": {
-            "type": "date"
-          },
-          "category": {
-            "type": "keyword"
-          },
-          "broaderCategory": {
-            "type": "keyword"
-          },
-          "warehouseLocation.rack": {
-            "type": "keyword"
-          },
-          "warehouseLocation.side": {
-            "type": "keyword"
-          },
-          "warehouseLocation.position": {
-            "type": "keyword"
-          },
-          "warehouseLocation.department": {
-            "type": "keyword"
-          },
-          "purchaseOffering.name": {
-            "type": "keyword"
-          },
-          "purchaseOffering.identifier": {
-            "type": "keyword"
-          },
-          "purchaseOffering.businessEntity": {
-            "type": "text"
-          },
-          "purchaseOffering.validFrom": {
-            "type": "date"
-          },
-          "purchaseOffering.validThrough": {
-            "type": "date"
-          },
-          "purchaseOffering.unitPriceSpecification.currencyValue": {
-            "type": "float"
-          },
-          "purchaseOffering.unitPriceSpecification.currency": {
-            "type": "keyword"
-          },
-          "purchaseOffering.unitPriceSpecification.margin": {
-            "type": "float"
-          },
-          "purchaseOffering.unitPriceSpecification.calculationBasis": {
-            "type": "keyword"
-          },
-          "purchaseOffering.unitPriceSpecification.valueAddedTaxIncluded": {
-            "type": "boolean"
-          },
-          "purchaseOffering.unitPriceSpecification.unitCode": {
-            "type": "keyword"
-          },
-          "salesOffering.name": {
-            "type": "keyword"
-          },
-          "salesOffering.validFrom": {
-            "type": "date"
-          },
-          "salesOffering.validThrough": {
-            "type": "date"
-          },
-          "salesOffering.unitPriceSpecification.currencyValue": {
-            "type": "float"
-          },
-          "salesOffering.unitPriceSpecification.currency": {
-            "type": "keyword"
-          },
-          "salesOffering.unitPriceSpecification.margin": {
-            "type": "float"
-          },
-          "salesOffering.unitPriceSpecification.calculationBasis": {
-            "type": "keyword"
-          },
-          "salesOffering.unitPriceSpecification.valueAddedTaxIncluded": {
-            "type": "boolean"
-          },
-          "salesOffering.unitPriceSpecification.unitCode": {
-            "type": "keyword"
-          }
+          "salesOffering.validFrom": { "type": "date" },
+          "salesOffering.validThrough": { "type": "date" },
+          "salesOffering.unitPriceSpecification.currencyValue": { "type": "float" },
+          "salesOffering.unitPriceSpecification.currency": { "type": "keyword" },
+          "salesOffering.unitPriceSpecification.margin": { "type": "float" },
+          "salesOffering.unitPriceSpecification.calculationBasis": { "type": "keyword" },
+          "salesOffering.unitPriceSpecification.valueAddedTaxIncluded": { "type": "boolean" },
+          "salesOffering.unitPriceSpecification.unitCode": { "type": "keyword" }
         }
       }
     }
-  ]
+  ],
+  "default_settings": {
+    "analysis": {
+      "normalizer": {
+        "names": {
+          "filter": [
+            "asciifolding",
+            "lowercase",
+            "trim"
+          ]
+        }
+      }
+    }
+  }
 }
