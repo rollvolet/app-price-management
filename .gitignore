@@ -2,11 +2,22 @@
 /data/db/*
 !/data/db/toLoad
 !/data/db/toLoad/*
-/data/elasticsearch/*
+
+# Migrations
+config/migrations/*
+!config/migrations/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-*
+*sensitive*
+
 /data/files/*
-/data/conversion/*
+/data/backups/*
+/data/token-cache
+/data/conversion
+
+# Search data
+data/elasticsearch/*
+config/search/*.store
+
 docker-compose.override.yml
-*~
-*-sensitive*
-*.store
 config/project-scripts/*.txt
+
+*~
