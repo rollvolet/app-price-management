@@ -169,10 +169,3 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
-  data-conversion:
-    image: rollvolet/products-data-converter
-    links:
-      - triplestore:database
-    volumes:
-      - ./data/conversion:/data
-    restart: "no"
