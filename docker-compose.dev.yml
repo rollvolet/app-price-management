@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  identifier:
+    ports:
+      - "80:80"
+    restart: "no"
+  dispatcher:
+    restart: "no"
+  frontend:
+    restart: "no"
+  database:
+    restart: "no"
+  triplestore:
+    ports:
+      - "8890:8890"
+    restart: "no"
+  delta-notifier:
+    restart: "no"
+  migrations:
+    restart: "no"
+    volumes:
+      - ./config/development/migrations:/data/migrations/development
+  msal-login:
+    restart: "no"
+    entrypoint: ["echo", "Service disabled"]
+  token-cache:
+    restart: "no"
+    entrypoint: ["echo", "Service disabled"]
+  mock-login:
+    restart: "no"
+  registration:
+    restart: "no"
+  search:
+    restart: "no"
+  elasticsearch:
+    restart: "no"
+  cache:
+    restart: "no"
+  resource:
+    restart: "no"
+  file:
+    restart: "no"
+  sequence-numbers:
+    restart: "no"
