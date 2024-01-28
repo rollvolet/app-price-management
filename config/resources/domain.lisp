@@ -9,6 +9,7 @@
 (defparameter *cache-count-queries* t)
 (defparameter *cache-model-properties* t)
 (setf sparql:*experimental-no-application-graph-for-sudo-select-queries* t)
+(defparameter *max-group-sorted-properties* nil)
 
 (read-domain-file "products.json")
 (read-domain-file "users.json")
