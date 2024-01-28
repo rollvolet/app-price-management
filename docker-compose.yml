@@ -25,7 +25,7 @@ services:
     labels:
       - "logging=true"
   frontend:
-    image: rollvolet/frontend-price-management:1.0.0
+    image: rollvolet/frontend-price-management:1.0.1
     restart: always
     logging: *default-logging
     labels:
