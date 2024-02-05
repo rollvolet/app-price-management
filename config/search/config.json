@@ -23,6 +23,7 @@
       "rdf_type" : "http://purl.org/goodrelations/v1#SomeItems",
       "properties" : {
         "name" : "http://purl.org/goodrelations/v1#name",
+        "alternateNames" : "http://schema.org/alternateName",
         "description" : "http://purl.org/goodrelations/v1#description",
         "identifier": "http://purl.org/dc/terms/identifier",
         "created": "http://purl.org/dc/terms/created",
@@ -118,6 +119,10 @@
       "mappings": {
         "properties": {
           "name": {
+            "type": "keyword",
+             "normalizer": "names"
+          },
+          "alternateNames": {
             "type": "keyword",
              "normalizer": "names"
           },
