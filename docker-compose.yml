@@ -25,7 +25,7 @@ services:
     labels:
       - "logging=true"
   frontend:
-    image: rollvolet/frontend-price-management:1.1.0
+    image: rollvolet/frontend-price-management:1.1.1
     restart: always
     logging: *default-logging
     labels:
@@ -146,7 +146,7 @@ services:
     labels:
       - "logging=true"
   resource:
-    image: semtech/mu-cl-resources:feature-enhanced-cache-keys
+    image: semtech/mu-cl-resources:1.23.0
     volumes:
       - ./config/resources:/config
     environment:
