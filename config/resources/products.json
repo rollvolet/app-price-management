@@ -204,11 +204,11 @@
       "class": "gr:SomeItems",
       "attributes": {
         "name": {
-          "type": "string",
+          "type": "language-string-set",
           "predicate": "gr:name"
         },
         "alternate-names": {
-          "type": "string-set",
+          "type": "language-string-set",
           "predicate": "schema:alternateName"
         },
         "description": {
