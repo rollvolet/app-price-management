@@ -207,6 +207,10 @@
           "type": "string",
           "predicate": "gr:name"
         },
+        "alternate-names": {
+          "type": "string-set",
+          "predicate": "schema:alternateName"
+        },
         "description": {
           "type": "string",
           "predicate": "gr:description"
