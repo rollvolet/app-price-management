@@ -62,7 +62,7 @@ services:
     labels:
       - "logging=true"
   delta-notifier:
-    image: semtech/mu-delta-notifier:0.2.0
+    image: semtech/mu-delta-notifier:0.3.0
     volumes:
       - ./config/delta:/config
     restart: always
@@ -115,7 +115,7 @@ services:
     labels:
       - "logging=true"
   search:
-    image: semtech/mu-search:feature-use-exact-counts-flag
+    image: semtech/mu-search:0.10.0-beta.4
     volumes:
       - ./config/search:/config
     environment:

@@ -9,7 +9,7 @@ export default [
     },
     options: {
       resourceFormat: "v0.0.1",
-      gracePeriod: 250,
+      gracePeriod: 500,
       ignoreFromSelf: true
     }
   },
@@ -23,7 +23,7 @@ export default [
     },
     options: {
       resourceFormat: "v0.0.1",
-      gracePeriod: 250,
+      gracePeriod: 500,
       ignoreFromSelf: true
     }
   }
