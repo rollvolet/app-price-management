@@ -22,8 +22,14 @@
       "on_path" : "products",
       "rdf_type" : "http://purl.org/goodrelations/v1#SomeItems",
       "properties" : {
-        "name" : "http://purl.org/goodrelations/v1#name",
-        "alternateNames" : "http://schema.org/alternateName",
+        "name" : {
+          "via": "http://purl.org/goodrelations/v1#name",
+          "type": "language-string"
+        },
+        "alternateNames": {
+          "via": "http://schema.org/alternateName",
+          "type": "language-string"
+        },
         "description" : "http://purl.org/goodrelations/v1#description",
         "identifier": "http://purl.org/dc/terms/identifier",
         "created": "http://purl.org/dc/terms/created",
@@ -119,12 +125,20 @@
       "mappings": {
         "properties": {
           "name": {
-            "type": "keyword",
-             "normalizer": "names"
+            "properties": {
+              "default": { "type": "keyword", "normalizer": "names" },
+              "en": { "type": "keyword", "normalizer": "names" },
+              "nl": { "type": "keyword", "normalizer": "names" },
+              "fr": { "type": "keyword", "normalizer": "names" }
+            }
           },
           "alternateNames": {
-            "type": "keyword",
-             "normalizer": "names"
+            "properties": {
+              "default": { "type": "keyword", "normalizer": "names" },
+              "en": { "type": "keyword", "normalizer": "names" },
+              "nl": { "type": "keyword", "normalizer": "names" },
+              "fr": { "type": "keyword", "normalizer": "names" }
+            }
           },
           "identifier": { "type": "integer" },
           "created": { "type": "date" },

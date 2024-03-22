@@ -1,0 +1,17 @@
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+DELETE {
+  GRAPH ?g {
+    ?product gr:name ?name .
+  }
+} INSERT {
+  GRAPH ?g {
+    ?product gr:name ?langName .
+  }
+} WHERE {
+  GRAPH ?g {
+    ?product a gr:SomeItems ;
+      gr:name ?name .
+  }
+  BIND(STRLANG(STR(?name), "nl") as ?langName)
+}
