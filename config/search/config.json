@@ -128,7 +128,7 @@
             "properties": {
               "default": { "type": "keyword", "normalizer": "names" },
               "en": { "type": "keyword", "normalizer": "names" },
-              "nl": { "type": "keyword", "normalizer": "names" },
+              "nl": { "type": "keyword", "normalizer": "names", "copy_to": "searchName" },
               "fr": { "type": "keyword", "normalizer": "names" }
             }
           },
@@ -136,10 +136,11 @@
             "properties": {
               "default": { "type": "keyword", "normalizer": "names" },
               "en": { "type": "keyword", "normalizer": "names" },
-              "nl": { "type": "keyword", "normalizer": "names" },
+              "nl": { "type": "keyword", "normalizer": "names", "copy_to": "searchName" },
               "fr": { "type": "keyword", "normalizer": "names" }
             }
           },
+          "searchName": { "type": "keyword", "normalizer": "names" },
           "identifier": { "type": "integer" },
           "created": { "type": "date" },
           "modified": { "type": "date" },
