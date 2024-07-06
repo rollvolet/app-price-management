@@ -9,7 +9,7 @@ x-logging:
 
 services:
   identifier:
-    image: semtech/mu-identifier:1.10.1
+    image: semtech/mu-identifier:1.10.3
     environment:
       DEFAULT_MU_AUTH_ALLOWED_GROUPS_HEADER: "[{\"name\":\"clean\", \"variables\":[]}, {\"name\":\"rollvolet\", \"variables\":[]}]"
     restart: always
