@@ -169,6 +169,22 @@
         "valid-through": {
           "type": "datetime",
           "predicate": "gr:validThrough"
+        },
+        "created": {
+          "type": "datetime",
+          "predicate": "dct:created"
+        },
+        "modified": {
+          "type": "datetime",
+          "predicate": "dct:modified"
+        },
+        "creator": {
+          "type": "url",
+          "predicate": "dct:creator"
+        },
+        "editor": {
+          "type": "url",
+          "predicate": "schema:editor"
         }
       },
       "relationships": {
@@ -230,6 +246,14 @@
         "modified": {
           "type": "datetime",
           "predicate": "dct:modified"
+        },
+        "creator": {
+          "type": "url",
+          "predicate": "dct:creator"
+        },
+        "editor": {
+          "type": "url",
+          "predicate": "schema:editor"
         }
       },
       "relationships": {
