@@ -25,37 +25,13 @@
           "type": "string",
           "predicate": "gr:name"
         },
-        "description": {
+        "identifier": {
           "type": "string",
-          "predicate": "gr:description"
-        },
-        "legal-name": {
-          "type": "string",
-          "predicate": "gr:legalName"
-        },
-        "vat-number": {
-          "type": "string",
-          "predicate": "gr:vatID"
-        },
-        "homepage": {
-          "type": "string",
-          "predicate": "foaf:homepage"
-        },
-        "comment": {
-          "type": "string",
-          "predicate": "schema:comment"
+          "predicate": "dct:identifier"
         },
         "category": {
           "type": "url",
           "predicate": "gr:category"
-        },
-        "created": {
-          "type": "datetime",
-          "predicate": "dct:created"
-        },
-        "modified": {
-          "type": "datetime",
-          "predicate": "dct:modified"
         }
       },
       "relationships": {
