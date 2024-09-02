@@ -169,22 +169,6 @@
         "valid-through": {
           "type": "datetime",
           "predicate": "gr:validThrough"
-        },
-        "created": {
-          "type": "datetime",
-          "predicate": "dct:created"
-        },
-        "modified": {
-          "type": "datetime",
-          "predicate": "dct:modified"
-        },
-        "creator": {
-          "type": "url",
-          "predicate": "dct:creator"
-        },
-        "editor": {
-          "type": "url",
-          "predicate": "schema:editor"
         }
       },
       "relationships": {
@@ -316,6 +300,22 @@
         "value-added-tax-included": {
           "type": "boolean",
           "predicate": "gr:valueAddedTaxIncluded"
+        },
+        "created": {
+          "type": "datetime",
+          "predicate": "dct:created"
+        },
+        "modified": {
+          "type": "datetime",
+          "predicate": "dct:modified"
+        },
+        "creator": {
+          "type": "url",
+          "predicate": "dct:creator"
+        },
+        "editor": {
+          "type": "url",
+          "predicate": "schema:editor"
         }
       },
       "relationships": {
