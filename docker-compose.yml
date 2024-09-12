@@ -169,3 +169,15 @@ services:
     logging: *default-logging
     labels:
       - "logging=true"
+  pricelist-export:
+    # TODO: use built image
+    image: semtech/mu-javascript-template:1.8.0
+    volumes:
+      - /home/michael/rpio/projects/ROLL/pricelist-export-service:/app
+      - ./data/files:/share
+    environment:
+      NODE_ENV: "development"
+    # restart: always
+    logging: *default-logging
+    labels:
+      - "logging=true"
