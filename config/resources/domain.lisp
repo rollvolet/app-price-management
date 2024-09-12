@@ -13,3 +13,4 @@
 
 (read-domain-file "products.json")
 (read-domain-file "users.json")
+(read-domain-file "task.lisp")

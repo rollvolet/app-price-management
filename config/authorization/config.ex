@@ -66,7 +66,8 @@ defmodule Acl.UserGroups.Config do
                 "http://mu.semte.ch/vocabularies/ext/ProductCategory",
                 "http://mu.semte.ch/vocabularies/ext/OrganizationType",
                 "http://schema.org/Country",
-                "http://schema.org/Language"
+                "http://schema.org/Language",
+                "http://redpencil.data.gift/vocabularies/tasks/Task"
               ]
             }
           }
