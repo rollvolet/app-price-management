@@ -1,0 +1,43 @@
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+DELETE {
+  GRAPH ?g {
+    ?oldSupplier gr:offers ?offer .
+  }
+} INSERT {
+  GRAPH ?g {
+    ?supplier gr:offers ?offer .
+  }
+} WHERE {
+  GRAPH ?g {
+    ?supplier a gr:BusinessEntity ;
+      gr:name ?name ;
+      dcterms:identifier ?rkbId .
+    ?oldSupplier a gr:BusinessEntity ;
+      gr:name ?name .
+    FILTER NOT EXISTS { ?oldSupplier dcterms:identifier ?legacyId . }
+
+    ?oldSupplier gr:offers ?offer .
+  }
+}
+
+
+;
+
+DELETE {
+  GRAPH ?g {
+    ?oldSupplier ?p ?o .
+  }
+} WHERE {
+  GRAPH ?g {
+    ?supplier a gr:BusinessEntity ;
+      gr:name ?name ;
+      dcterms:identifier ?rkbId .
+    ?oldSupplier a gr:BusinessEntity ;
+      gr:name ?name .
+    FILTER NOT EXISTS { ?oldSupplier dcterms:identifier ?legacyId . }
+
+    ?oldSupplier ?p ?o .
+  }
+}

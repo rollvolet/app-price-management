@@ -89,14 +89,6 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/business-entities/"
   end
 
-  match "/addresses/*path", @json_service do
-    Proxy.forward conn, path, "http://cache/addresses/"
-  end
-
-  match "/contact-points/*path", @json_service do
-    Proxy.forward conn, path, "http://cache/contact-points/"
-  end
-
   match "/offerings/*path", @json_service do
     Proxy.forward conn, path, "http://cache/offerings/"
   end
@@ -127,18 +119,6 @@ defmodule Dispatcher do
 
   get "/unit-codes/*path", @json_service do
     Proxy.forward conn, path, "http://cache/unit-codes/"
-  end
-
-  get "/organization-types/*path", @json_service do
-    Proxy.forward conn, path, "http://cache/organization-types/"
-  end
-
-  get "/languages/*path", @json_service do
-    Proxy.forward conn, path, "http://cache/languages/"
-  end
-
-  get "/countries/*path", @json_service do
-    Proxy.forward conn, path, "http://cache/countries/"
   end
 
 
