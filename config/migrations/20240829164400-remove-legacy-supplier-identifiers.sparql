@@ -1,0 +1,13 @@
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+DELETE {
+  GRAPH ?g {
+    ?supplier dcterms:identifier ?legacyId .
+  }
+} WHERE {
+  GRAPH ?g {
+    ?supplier a gr:BusinessEntity ;
+      dcterms:identifier ?legacyId .
+  }
+}

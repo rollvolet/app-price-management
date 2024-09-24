@@ -1,5 +1,3 @@
-version: '3.8'
-
 x-logging:
   &default-logging
   driver: "json-file"
@@ -71,8 +69,8 @@ services:
       - "logging=true"
   migrations:
     image: semtech/mu-migrations-service:0.9.0
-    links:
-      - triplestore:database
+    environment:
+      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
     volumes:
       - ./config/migrations:/data/migrations
     restart: always
