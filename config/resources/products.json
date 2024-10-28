@@ -25,37 +25,13 @@
           "type": "string",
           "predicate": "gr:name"
         },
-        "description": {
+        "identifier": {
           "type": "string",
-          "predicate": "gr:description"
-        },
-        "legal-name": {
-          "type": "string",
-          "predicate": "gr:legalName"
-        },
-        "vat-number": {
-          "type": "string",
-          "predicate": "gr:vatID"
-        },
-        "homepage": {
-          "type": "string",
-          "predicate": "foaf:homepage"
-        },
-        "comment": {
-          "type": "string",
-          "predicate": "schema:comment"
+          "predicate": "dct:identifier"
         },
         "category": {
           "type": "url",
           "predicate": "gr:category"
-        },
-        "created": {
-          "type": "datetime",
-          "predicate": "dct:created"
-        },
-        "modified": {
-          "type": "datetime",
-          "predicate": "dct:modified"
         }
       },
       "relationships": {
@@ -63,87 +39,9 @@
           "predicate": "gr:offers",
           "target": "offering",
           "cardinality": "many"
-        },
-        "contact-points": {
-          "predicate": "schema:contactPoint",
-          "target": "contact-point",
-          "cardinality": "many"
-        },
-        "address": {
-          "predicate": "locn:address",
-          "target": "address",
-          "cardinality": "one"
-        },
-        "language": {
-          "predicate": "schema:knowsLanguage",
-          "target": "language",
-          "cardinality": "one"
-        },
-        "organization-type": {
-          "predicate": "regorg:orgType",
-          "target": "organization-type",
-          "cardinality": "one"
         }
       },
       "new-resource-base": "http://data.rollvolet.be/business-entities/",
-      "features": ["include-uri"]
-    },
-    "contact-points": {
-      "name": "contact-point",
-      "class": "schema:ContactPoint",
-      "attributes": {
-        "telephone": {
-          "type": "string",
-          "predicate": "schema:telephone"
-        },
-        "fax-number": {
-          "type": "string",
-          "predicate": "schema:faxNumber"
-        },
-        "email": {
-          "type": "string",
-          "predicate": "schema:email"
-        },
-        "contactType": {
-          "type": "string",
-          "predicate": "schema:contactType"
-        }
-      },
-      "relationships": {
-        "country": {
-          "predicate": "locn:adminUnitL1",
-          "target": "country",
-          "cardinality": "one"
-        }
-      },
-      "new-resource-base": "http://data.rollvolet.be/contact-points/",
-      "features": ["include-uri"]
-    },
-    "addresses": {
-      "name": "address",
-      "class": "locn:Address",
-      "attributes": {
-        "fullAddress": {
-          "type": "string",
-          "predicate": "locn:fullAddress"
-        },
-        "postalCode": {
-          "type": "string",
-          "predicate": "locn:postalCode"
-        },
-        "city": {
-          "type": "string",
-          "predicate": "adres:gemeentenaam"
-        }
-      },
-      "relationships": {
-        "country": {
-          "predicate": "locn:adminUnitL1",
-          "target": "country",
-          "cardinality": "one"
-        }
-      },
-      "new-resource-base": "http://data.rollvolet.be/addresses/",
       "features": ["include-uri"]
     },
     "offerings": {
@@ -230,6 +128,14 @@
         "modified": {
           "type": "datetime",
           "predicate": "dct:modified"
+        },
+        "creator": {
+          "type": "url",
+          "predicate": "dct:creator"
+        },
+        "editor": {
+          "type": "url",
+          "predicate": "schema:editor"
         }
       },
       "relationships": {
@@ -292,6 +198,22 @@
         "value-added-tax-included": {
           "type": "boolean",
           "predicate": "gr:valueAddedTaxIncluded"
+        },
+        "created": {
+          "type": "datetime",
+          "predicate": "dct:created"
+        },
+        "modified": {
+          "type": "datetime",
+          "predicate": "dct:modified"
+        },
+        "creator": {
+          "type": "url",
+          "predicate": "dct:creator"
+        },
+        "editor": {
+          "type": "url",
+          "predicate": "schema:editor"
         }
       },
       "relationships": {
@@ -470,50 +392,6 @@
         }
       },
       "new-resource-base": "http://data.rollvolet.be/product-categories/",
-      "features": ["include-uri"]
-    },
-    "organization-types": {
-      "name": "organization-type",
-      "class": "ext:OrganizationType",
-      "attributes": {
-        "label": {
-          "type": "string",
-          "predicate": "skos:prefLabel"
-        },
-        "notation": {
-          "type": "string",
-          "predicate": "skos:notation"
-        },
-        "concept-scheme": {
-          "type": "url",
-          "predicate": "skos:inScheme"
-        }
-      },
-      "new-resource-base": "http://data.rollvolet.be/organization-types/",
-      "features": ["include-uri"]
-    },
-    "countries": {
-      "name": "country",
-      "class": "schema:Country",
-      "attributes": {
-        "name": {
-          "type": "string",
-          "predicate": "schema:name"
-        }
-      },
-      "new-resource-base": "http://data.rollvolet.be/countries/",
-      "features": ["include-uri"]
-    },
-    "languages": {
-      "name": "language",
-      "class": "schema:Language",
-      "attributes": {
-        "name": {
-          "type": "string",
-          "predicate": "schema:name"
-        }
-      },
-      "new-resource-base": "http://data.rollvolet.be/languages/",
       "features": ["include-uri"]
     }
   }
