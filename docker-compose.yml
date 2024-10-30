@@ -155,6 +155,8 @@ services:
       - "logging=true"
   file:
     image: semtech/mu-file-service:3.3.2
+    links:
+      - database:database
     volumes:
       - ./data/files:/share
     restart: always
@@ -168,7 +170,7 @@ services:
     labels:
       - "logging=true"
   pricelist-export:
-    image: rollvolet/pricelist-export-service:1.0.0
+    image: rollvolet/pricelist-export-service:1.0.1
     volumes:
       - ./data/files:/share
     restart: always
