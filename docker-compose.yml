@@ -79,7 +79,7 @@ services:
     labels:
       - "logging=true"
   msal-login:
-    image: rollvolet/msal-login-service:1.0.0
+    image: rollvolet/msal-login-service:3.0.0
     environment:
       AUTH_REFRESH_TOKENS: "true"
     restart: always
