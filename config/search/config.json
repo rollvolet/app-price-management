@@ -4,12 +4,19 @@
   "additive_indexes": false,
   "eager_indexing_groups": [
     [
-      { "name": "public", "variables": [] },
-      { "name": "rollvolet-read", "variables": [] },
-      { "name": "rollvolet-write", "variables": [] }
+      { "name": "public", "variables": [] }
     ],
     [
-      { "name": "clean", "variables": [] }
+      { "name": "authenticated-access", "variables": [] }
+    ],
+    [
+      { "name": "admin", "variables": [] }
+    ],
+    [
+      { "name": "price-admin", "variables": [] }
+    ],
+    [
+      { "name": "employee", "variables": [] }
     ]
   ],
   "update_wait_interval_minutes": 0,

@@ -1,0 +1,18 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+INSERT DATA {
+  GRAPH <http://mu.semte.ch/graphs/users> {
+    <http://data.rollvolet.be/user-groups/employee> a foaf:Group ;
+        mu:uuid "2d2249c9-5083-42cf-a0be-2e3c498667e7" ;
+        foaf:name "Werknemers" .
+
+    <http://data.rollvolet.be/user-groups/price-admin> a foaf:Group ;
+        mu:uuid "39051163-a27a-49e1-9473-5f154aeb904b" ;
+        foaf:name "Prijsbeheerders" .
+
+    <http://data.rollvolet.be/user-groups/admin> a foaf:Group ;
+        mu:uuid "418b0dd1-fbcc-4e2c-963d-0130fbc9f762" ;
+        foaf:name "Beheerders" .
+
+      }
+}

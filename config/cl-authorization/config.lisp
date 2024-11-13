@@ -59,18 +59,42 @@
               <SESSION_ID> session:account ?account .
           } LIMIT 1")
 
+(supply-allowed-group "admin"
+  :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+          SELECT ?account WHERE {
+              <SESSION_ID> session:account ?account .
+              ?user foaf:account ?account .
+              <http://data.rollvolet.be/user-groups/admin> foaf:member ?user .
+          } LIMIT 1")
+
+(supply-allowed-group "price-admin"
+  :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+          SELECT ?account WHERE {
+              <SESSION_ID> session:account ?account .
+              ?user foaf:account ?account .
+              <http://data.rollvolet.be/user-groups/price-admin> foaf:member ?user .
+          } LIMIT 1")
+
+(supply-allowed-group "employee"
+  :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+          SELECT ?account WHERE {
+              <SESSION_ID> session:account ?account .
+              ?user foaf:account ?account .
+              <http://data.rollvolet.be/user-groups/employee> foaf:member ?user .
+          } LIMIT 1")
+
 (define-graph public ("http://mu.semte.ch/graphs/public"))
 
-(grant (read)
-       :to-graph public
-       :for-allowed-group "public")
-
-(define-graph rollvolet-write ("http://mu.semte.ch/graphs/rollvolet")
+(define-graph general-info ("http://mu.semte.ch/graphs/rollvolet")
   ("gr:BusinessEntity" -> _)
   ("gr:BusinessEntityType" -> _)
-  ("gr:Offering" -> _)
   ("gr:SomeItems" -> _)
-  ("gr:UnitPriceSpecification" -> _)
   ("schema:ContactPoint" -> _)
   ("locn:Address" -> _)
   ("stock:WarehouseLocation" -> _)
@@ -83,14 +107,31 @@
   ("schema:Language" -> _)
 )
 
-(grant (read write)
-       :to-graph rollvolet-write
-       :for-allowed-group "authenticated-access")  
+(define-graph price-info ("http://mu.semte.ch/graphs/rollvolet")
+  ("gr:Offering" -> _)
+  ("gr:UnitPriceSpecification" -> _)
+)
 
+
+(grant (read)
+       :to-graph public
+       :for-allowed-group "public")
+
+(grant (read write)
+       :to-graph (general-info price-info)
+       :for-allowed-group "price-admin")  
+
+(grant (read write)
+       :to-graph (general-info)
+       :for-allowed-group "employee")
+(grant (read)
+       :to-graph (price-info)
+       :for-allowed-group "employee")
 
 (define-graph users ("http://mu.semte.ch/graphs/users")
   ("foaf:Person" -> _)
   ("foaf:OnlineAccount" -> _)
+  ("foaf:Group" -> _)
 )
 
 (type-cache::add-type-for-prefix "http://mu.semte.ch/sessions/" "http://mu.semte.ch/vocabularies/session/Session")
@@ -102,3 +143,7 @@
 (grant (read)
        :to-graph (users sessions)
        :for-allowed-group "authenticated-access")
+
+(grant (write)
+      :to-graph (users)
+      :for-allowed-group "admin")

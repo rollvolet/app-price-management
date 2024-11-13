@@ -24,6 +24,12 @@
           "predicate": "foaf:account",
           "target": "account",
           "cardinality": "one"
+        },
+        "user-groups": {
+          "predicate": "foaf:member",
+          "target": "user-group",
+          "cardinality": "many",
+          "inverse": true
         }
       },
       "features": [
@@ -56,6 +62,27 @@
         "include-uri"
       ],
       "new-resource-base": "http://data.rollvolet.be/accounts/"
+    },
+    "user-groups": {
+      "name": "user-group",
+      "class": "foaf:Group",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "foaf:name"
+        }
+      },
+      "relationships": {
+        "users": {
+          "predicate": "foaf:member",
+          "target": "user",
+          "cardinality": "many"
+        }
+      },
+      "features": [
+        "include-uri"
+      ],
+      "new-resource-base": "http://data.rollvolet.be/user-groups/"
     }
   }
 }
