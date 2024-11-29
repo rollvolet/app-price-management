@@ -61,6 +61,7 @@ defmodule Acl.UserGroups.Config do
                 "http://data.rollvolet.be/vocabularies/stock-management/WarehouseLocation",
                 "http://data.rollvolet.be/vocabularies/stock-management/WarehouseDepartment",
                 "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#FileDataObject",
+                "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#DataContainer",
                 "http://purl.org/goodrelations/v1#BusinessEntityType",
                 "http://mu.semte.ch/vocabularies/ext/UnitCode",
                 "http://mu.semte.ch/vocabularies/ext/ProductCategory",
