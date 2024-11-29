@@ -41,3 +41,5 @@ services:
     restart: "no"
   sequence-numbers:
     restart: "no"
+  pricelist-export:
+    restart: "no"
