@@ -41,6 +41,7 @@
   :dct "http://purl.org/dc/terms/"
   :nfo "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#"
   :nie "http://www.semanticdesktop.org/ontologies/2007/01/19/nie#"
+  :task "http://redpencil.data.gift/vocabularies/tasks/"
   :dbpedia "http://dbpedia.org/resource/"
   :schema "http://schema.org/"
   :locn "http://www.w3.org/ns/locn#"
@@ -49,25 +50,19 @@
   :price "http://data.rollvolet.be/vocabularies/pricing/"
   :stock "http://data.rollvolet.be/vocabularies/stock-management/")
 
+(type-cache::add-type-for-prefix "http://mu.semte.ch/sessions/" "http://mu.semte.ch/vocabularies/session/Session")
 
-(supply-allowed-group "public")
+(define-graph sessions ("http://mu.semte.ch/graphs/sessions")
+  ("session:Session" -> _))
 
-(supply-allowed-group "authenticated-access"
-  :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
-          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
-          SELECT ?account WHERE {
-              <SESSION_ID> session:account ?account .
-          } LIMIT 1")
-
-(define-graph public ("http://mu.semte.ch/graphs/public"))
-
-(grant (read)
-       :to-graph public
-       :for-allowed-group "public")
-
-(define-graph rollvolet-write ("http://mu.semte.ch/graphs/rollvolet")
-  ("gr:BusinessEntity" -> _)
+(define-graph codelists ("http://mu.semte.ch/graphs/rollvolet")
+  ("schema:Country" -> _)
+  ("schema:Language" -> _)
   ("gr:BusinessEntityType" -> _)
+  ("ext:UnitCode" -> _))
+
+(define-graph products ("http://mu.semte.ch/graphs/rollvolet")
+  ("gr:BusinessEntity" -> _)
   ("gr:Offering" -> _)
   ("gr:SomeItems" -> _)
   ("gr:UnitPriceSpecification" -> _)
@@ -76,29 +71,25 @@
   ("stock:WarehouseLocation" -> _)
   ("stock:WarehouseDepartment" -> _)
   ("nfo:FileDataObject" -> _)
-  ("ext:UnitCode" -> _)
   ("ext:ProductCategory" -> _)
-  ("ext:OrganizationType" -> _)
-  ("schema:Country" -> _)
-  ("schema:Language" -> _)
-)
-
-(grant (read write)
-       :to-graph rollvolet-write
-       :for-allowed-group "authenticated-access")  
-
+  ("task:Task")
+  ("nfo:DataContainer"))
 
 (define-graph users ("http://mu.semte.ch/graphs/users")
   ("foaf:Person" -> _)
-  ("foaf:OnlineAccount" -> _)
-)
+  ("foaf:OnlineAccount" -> _))
 
-(type-cache::add-type-for-prefix "http://mu.semte.ch/sessions/" "http://mu.semte.ch/vocabularies/session/Session")
-(define-graph sessions ("http://mu.semte.ch/graphs/sessions")
-  ("session:Session" -> _) ; uris with prefix http://mu.semte.ch/sessions/
-  )
+(supply-allowed-group "logged-in"
+  :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
+          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
+          SELECT ?account WHERE {
+              <SESSION_ID> session:account ?account .
+          } LIMIT 1")
 
-; note: read ignores defined predicates and always gives access to full graph
 (grant (read)
-       :to-graph (users sessions)
-       :for-allowed-group "authenticated-access")
+  :to-graph (codelists sessions users)
+  :for-allowed-group "logged-in")
+
+(grant (read write)
+  :to-graph products
+  :for-allowed-group "logged-in")
