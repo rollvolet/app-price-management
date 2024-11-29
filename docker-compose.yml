@@ -48,7 +48,7 @@ services:
     environment:
       MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
   triplestore:
-    image: redpencil/virtuoso:1.2.0-rc.1
+    image: redpencil/virtuoso:1.2.0
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/rollvolet"
