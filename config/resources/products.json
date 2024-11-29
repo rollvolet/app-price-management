@@ -322,10 +322,9 @@
           "inverse": true
         },
         "containers": {
-          "predicate": "ext:content",
+          "predicate": "nfo:belongsToContainer",
           "target": "data-container",
-          "cardinality": "many",
-          "inverse": true
+          "cardinality": "many"
         }
       },
       "new-resource-base": "http://data.rollvolet.be/files/",

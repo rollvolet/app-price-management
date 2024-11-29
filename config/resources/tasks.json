@@ -68,8 +68,9 @@
           "cardinality": "one"
         },
         "files": {
-          "predicate": "ext:content",
+          "predicate": "nfo:belongsToContainer",
           "target": "file",
+          "inverse": true,
           "cardinality": "many"
         }
       },
