@@ -1,0 +1,83 @@
+{
+  "version": "0.1",
+  "prefixes": {
+    "dct": "http://purl.org/dc/terms/",
+    "nfo": "http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#",
+    "task": "http://redpencil.data.gift/vocabularies/tasks/",
+    "adms": "http://www.w3.org/ns/adms#"
+  },
+  "resources": {
+    "tasks": {
+      "name": "task",
+      "class": "task:Task",
+      "attributes": {
+        "created": {
+          "type": "datetime",
+          "predicate": "dct:created"
+        },
+        "modified": {
+          "type": "datetime",
+          "predicate": "dct:modified"
+        },
+        "status": {
+          "type": "url",
+          "predicate": "adms:status"
+        },
+        "operation": {
+          "type": "url",
+          "predicate": "task:operation"
+        }
+        "index": {
+          "type": "string",
+          "predicate": "task:index"
+        }
+      },
+      "relationships": {
+        "input-container": {
+          "predicate": "task:inputContainer",
+          "target": "data-container",
+          "cardinality": "one"
+        },
+        "result-container": {
+          "predicate": "task:resultContainer",
+          "target": "data-container",
+          "cardinality": "one"
+        }
+      },
+      "features": [
+        "include-uri"
+      ],
+      "new-resource-base": "http://data.rollvolet.be/tasks/"
+    },
+    "data-containers": {
+      "name": "data-container",
+      "class": "nfo:DataContainer",
+      "attributes": {
+      },
+      "relationships": {
+        "input-from-tasks": {
+          "predicate": "task:inputContainer",
+          "target": "task",
+          "inverse": true,
+          "cardinality": "one"
+        },
+        "result-from-tasks": {
+          "predicate": "task:resultContainer",
+          "target": "task",
+          "inverse": true,
+          "cardinality": "one"
+        },
+        "files": {
+          "predicate": "nfo:belongsToContainer",
+          "target": "file",
+          "inverse": true,
+          "cardinality": "many"
+        }
+      },
+      "features": [
+        "include-uri"
+      ],
+      "new-resource-base": "http://data.rollvolet.be/data-containers/"
+    }
+  }
+}

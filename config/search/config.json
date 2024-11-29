@@ -4,19 +4,15 @@
   "additive_indexes": false,
   "eager_indexing_groups": [
     [
-      { "name": "public", "variables": [] }
+      { "name": "logged-in", "variables": [] },
+      { "name": "employee", "variables": [] }
     ],
     [
-      { "name": "authenticated-access", "variables": [] }
-    ],
-    [
-      { "name": "admin", "variables": [] }
-    ],
-    [
+      { "name": "logged-in", "variables": [] },
       { "name": "price-admin", "variables": [] }
     ],
     [
-      { "name": "employee", "variables": [] }
+      { "name": "admin", "variables": [] }
     ]
   ],
   "update_wait_interval_minutes": 0,

@@ -13,6 +13,5 @@ INSERT DATA {
     <http://data.rollvolet.be/user-groups/admin> a foaf:Group ;
         mu:uuid "418b0dd1-fbcc-4e2c-963d-0130fbc9f762" ;
         foaf:name "Beheerders" .
-
-      }
+  }
 }

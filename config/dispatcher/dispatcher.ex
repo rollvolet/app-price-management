@@ -121,6 +121,25 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/unit-codes/"
   end
 
+  get "/organization-types/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/organization-types/"
+  end
+
+  get "/languages/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/languages/"
+  end
+
+  get "/countries/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/countries/"
+  end
+
+  match "/tasks/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/tasks/"
+  end
+
+  match "/data-containers/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/data-containers/"
+  end
 
   ## Fallback
 

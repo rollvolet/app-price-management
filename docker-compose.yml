@@ -37,10 +37,10 @@ services:
     labels:
       - "logging=true"
   database:
-    image: semtech/sparql-parser:0.0.10
+    image: semtech/sparql-parser:0.0.12
     volumes:
-      - ./config/cl-authorization:/config
-      - ./data/cl-authorization:/data
+      - ./config/authorization:/config
+      - ./data/authorization:/data
     restart: always
     logging: *default-logging
     labels:
@@ -48,7 +48,7 @@ services:
     environment:
       MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
   triplestore:
-    image: redpencil/virtuoso:1.2.0-rc.1
+    image: redpencil/virtuoso:1.2.0
     environment:
       SPARQL_UPDATE: "true"
       DEFAULT_GRAPH: "http://mu.semte.ch/graphs/rollvolet"
@@ -114,7 +114,7 @@ services:
     labels:
       - "logging=true"
   search:
-    image: semtech/mu-search:0.10.0-beta.5
+    image: semtech/mu-search:0.10.0
     volumes:
       - ./config/search:/config
     environment:
@@ -164,6 +164,14 @@ services:
       - "logging=true"
   sequence-numbers:
     image: rollvolet/sequence-numbers-service:0.1.0
+    restart: always
+    logging: *default-logging
+    labels:
+      - "logging=true"
+  pricelist-export:
+    image: rollvolet/pricelist-export-service:1.1.0
+    volumes:
+      - ./data/files:/share
     restart: always
     logging: *default-logging
     labels:

@@ -320,6 +320,11 @@
           "target": "file",
           "cardinality": "one",
           "inverse": true
+        },
+        "containers": {
+          "predicate": "nfo:belongsToContainer",
+          "target": "data-container",
+          "cardinality": "many"
         }
       },
       "new-resource-base": "http://data.rollvolet.be/files/",
