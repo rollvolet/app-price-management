@@ -37,15 +37,16 @@ services:
     labels:
       - "logging=true"
   database:
-    image: semtech/mu-authorization:0.6.0-beta.8
-    environment:
-      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
+    image: semtech/sparql-parser:0.0.12
     volumes:
       - ./config/authorization:/config
+      - ./data/authorization:/data
     restart: always
     logging: *default-logging
     labels:
       - "logging=true"
+    environment:
+      MU_SPARQL_ENDPOINT: "http://triplestore:8890/sparql"
   triplestore:
     image: redpencil/virtuoso:1.2.0-rc.1
     environment:

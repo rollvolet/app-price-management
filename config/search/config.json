@@ -4,12 +4,7 @@
   "additive_indexes": false,
   "eager_indexing_groups": [
     [
-      { "name": "public", "variables": [] },
-      { "name": "rollvolet-read", "variables": [] },
-      { "name": "rollvolet-write", "variables": [] }
-    ],
-    [
-      { "name": "clean", "variables": [] }
+      { "name": "logged-in", "variables": [] }
     ]
   ],
   "update_wait_interval_minutes": 0,
