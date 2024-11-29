@@ -155,8 +155,6 @@ services:
       - "logging=true"
   file:
     image: semtech/mu-file-service:3.3.2
-    links:
-      - database:database
     volumes:
       - ./data/files:/share
     restart: always
