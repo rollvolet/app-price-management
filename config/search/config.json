@@ -4,8 +4,7 @@
   "additive_indexes": false,
   "eager_indexing_groups": [
     [
-      { "name": "logged-in", "variables": [] },
-      { "name": "employee", "variables": [] }
+      { "name": "logged-in", "variables": [] }
     ],
     [
       { "name": "logged-in", "variables": [] },

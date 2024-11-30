@@ -109,16 +109,6 @@
               <http://data.rollvolet.be/user-groups/price-admin> foaf:member ?user .
           } LIMIT 1")
 
-(supply-allowed-group "employee"
-  :query "PREFIX session: <http://mu.semte.ch/vocabularies/session/>
-          PREFIX mu: <http://mu.semte.ch/vocabularies/core/>
-          PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-          SELECT ?account WHERE {
-              <SESSION_ID> session:account ?account .
-              ?user foaf:account ?account .
-              <http://data.rollvolet.be/user-groups/employee> foaf:member ?user .
-          } LIMIT 1")
-
 (grant (read write)
   :to-graph (users sessions products)
   :for-allowed-group "logged-in")
