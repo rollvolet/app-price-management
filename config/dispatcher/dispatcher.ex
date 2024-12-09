@@ -42,9 +42,14 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://cache/accounts/"
   end
 
-  get "/users/*path", @json_service do
+  match "/users/*path", @json_service do
     Proxy.forward conn, path, "http://cache/users/"
   end
+
+  match "/user-groups/*path", @json_service do
+    Proxy.forward conn, path, "http://cache/user-groups/"
+  end
+
 
   ## File upload/download
 
