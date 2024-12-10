@@ -23,7 +23,7 @@ services:
     labels:
       - "logging=true"
   frontend:
-    image: rollvolet/frontend-price-management:1.4.1
+    image: rollvolet/frontend-price-management:1.5.0
     restart: always
     logging: *default-logging
     labels:
