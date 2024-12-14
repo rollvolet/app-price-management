@@ -21,10 +21,8 @@ services:
       - ./config/development/migrations:/data/migrations/development
   msal-login:
     restart: "no"
-    entrypoint: ["echo", "Service disabled"]
   token-cache:
     restart: "no"
-    entrypoint: ["echo", "Service disabled"]
   mock-login:
     restart: "no"
   registration:

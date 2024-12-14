@@ -169,7 +169,7 @@ services:
     labels:
       - "logging=true"
   pricelist-export:
-    image: rollvolet/pricelist-export-service:1.1.0
+    image: rollvolet/pricelist-export-service:1.2.0
     volumes:
       - ./data/files:/share
     restart: always
